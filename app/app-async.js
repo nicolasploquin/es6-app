@@ -63,7 +63,7 @@ document
         let files = event.target.files;
         if(files.length !== 0 && files[0].type === "application/json"){
             let reader = new FileReader();
-            reader.addEventListener("load", event => {
+            reader.addEventListener("load", async (event) => {
                 let clients = JSON.parse(reader.result);
                 
                 let attentes = [];
@@ -73,11 +73,8 @@ document
                     attentes.push(dao.create(nom,prenom));
                 }
                 
-                Promise.all(attentes).then( () => {
-                    actualiserListeClients();
-                });
-
-
+                await Promise.all(attentes); // Promise.race()
+                actualiserListeClients();
 
             });
             reader.readAsText(files[0]);
