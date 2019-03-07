@@ -1,7 +1,7 @@
-import { ClientDAO } from "./fetch-service.js";
+import { clientDAO } from "./data/fetch-service.js";
 import { encodeText, notification } from "./util.js";
 
-let dao = new ClientDAO();
+let dao = clientDAO;
 
 /* --- Construction du tableau des clients --- */
 

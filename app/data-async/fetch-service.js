@@ -1,20 +1,13 @@
 import {Client} from "../model/client.js";
 
-const url = "https://banque-api.azurewebsites.net/api";
+const url = "https://core-webapi.azurewebsites.net/api/clients";
 
-export class ClientDAO {
+class ClientDAO {
 
     constructor(){
        
     }
 
-    readAll(){
-        return new Promise((resolve,reject) => {
-            fetch(`${url}/clients`).then(resp => {
-                resolve(resp.json());
-            });
-        });
-    }
     // readAll(){
     //     return new Promise((resolve,reject) => {
     //         fetch(`${url}/clients`).then(resp => {
@@ -22,13 +15,10 @@ export class ClientDAO {
     //         });
     //     });
     // }
-    // async readAll(){
-    //     let clients = await fetch(`${url}/clients`)
-    //                 .then(resp => resp.json());
-    //     // let clients = await resp.json();
-    //     console.log(`${clients.length} clients reçus.`);
-    //     return clients;
-    // }
+    async readAll(){
+        return fetch(url).then(resp => resp.json());
+    }
+
     read(id){
         
         return {};
@@ -38,16 +28,17 @@ export class ClientDAO {
     }
     async create(nom, prenom){
         let client = new Client(nom,prenom);
-        return fetch(`${url}/clients/post`,{
+        return fetch(url,{
             method: 'POST',
-            body: JSON.stringify(client),
             headers:{
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(client)
         });
 
     }
 
 }
 
+export const clientDAO = new ClientDAO();
 
