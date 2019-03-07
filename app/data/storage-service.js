@@ -1,6 +1,6 @@
 import {Client} from "../model/client.js";
 
-export class ClientDAO {
+class ClientDAO {
 
     constructor(){
         if(localStorage.clients){
@@ -27,7 +27,10 @@ export class ClientDAO {
         client.id = 0;
         if(this.clients.length > 0)
             client.id = Math.max(...this.clients.map(cli => cli.id)) + 1;
-        this.clients.push(client);
+        this.clients[this.clients.length] = client;
+        // this.clients.push(client);
+        console.dir(client);
+        console.log(this.clients.length);
         save(this.clients);
     }
 }
@@ -40,4 +43,4 @@ function save(clients){
     localStorage.clients = JSON.stringify(clients);
 }
 
-
+export const clientDAO = new ClientDAO();

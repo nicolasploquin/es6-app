@@ -1,6 +1,6 @@
 import {Client} from "../model/client.js";
 
-export class ClientDAO {
+class ClientDAO {
 
     constructor(){
         this.clients = [
@@ -23,9 +23,7 @@ export class ClientDAO {
         this.clients.push(new Client(nom, prenom));
     }
 
-
-
-
-
-
 }
+
+export const clientDAO = new ClientDAO();
+

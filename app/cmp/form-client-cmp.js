@@ -1,12 +1,12 @@
-// import { ClientDAO } from "../data/data-service.js";
-import { ClientDAO } from "../data/storage-service.js";
+// import { clientDAO } from "../data/data-service.js";
+import { clientDAO } from "../data/storage-service.js";
 
 
 export class FormClientCmp{
     constructor(update){
         this.update = update;
 
-        this.dao = new ClientDAO();
+        this.dao = clientDAO;
 
         this.formClient = document.querySelector("#form-client");
         this.btnSubmit = this.formClient.querySelector("[type=submit]");
@@ -53,7 +53,7 @@ export class FormClientCmp{
         // actualiserListeClients();
         // window.location = "#liste-clients"
         // notif(`Client ${nom} enregistré.`);
-        
+        console.log(nom);
         this.update();
     }
     

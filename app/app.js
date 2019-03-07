@@ -1,9 +1,9 @@
-// import { ClientDAO } from "./data/data-service.js";
-import { ClientDAO } from "./data/storage-service.js";
+// import { clientDAO } from "./data/data-service.js";
+import { clientDAO } from "./data/storage-service.js";
 import { encodeText } from "./util.js";
 import { FormClientCmp } from "./cmp/form-client-cmp.js";
 
-let dao = new ClientDAO();
+let dao = clientDAO;
 
 /* --- Construction du tableau des clients --- */
 function actualiserListeClients(){
@@ -11,16 +11,24 @@ function actualiserListeClients(){
         
     let tabClients = document.querySelector("#liste-clients table > tbody");
     tabClients.innerHTML = "";
-    
-    let trInnerHtml = cli => {
-        if(cli){
-            let trHTML = `<tr>
-                            <td>${encodeText(cli.nom)}</td>
-                            <td>${encodeText(cli.prenom)}</td>
-                          </tr>`;
-            tabClients.innerHTML += trHTML;
-        }
-    };    
+    console.dir(clients);
+    for(const cli of clients){
+        let trHTML = `<tr>
+                        <td>${encodeText(cli.nom)}</td>
+                        <td>${encodeText(cli.prenom)}</td>
+                      </tr>`;
+        tabClients.innerHTML += trHTML;
+    }
+
+    // let trInnerHtml = cli => {
+    //     if(cli){
+    //         let trHTML = `<tr>
+    //                         <td>${encodeText(cli.nom)}</td>
+    //                         <td>${encodeText(cli.prenom)}</td>
+    //                       </tr>`;
+    //         tabClients.innerHTML += trHTML;
+    //     }
+    // };    
     // let trCreateElement = cli => {
     //     let trHTML = document.createElement("tr");
     //     let tdNom = document.createElement("td");
@@ -31,7 +39,7 @@ function actualiserListeClients(){
     //     trHTML.appendChild(tdPrenom);
     //     tabClients.appendChild(trHTML);
     // };
-    clients.forEach( trInnerHtml );
+    // clients.forEach( trInnerHtml );
 }    
 
 actualiserListeClients();
