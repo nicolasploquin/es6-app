@@ -1,10 +1,7 @@
-// import { ClientDAO } from "./data-service.js";
-import { ClientDAO } from "./storage-service.js";
-// import { ClientDAO } from "./rest-service.js";
-// import { ClientDAO } from "./fetch-service.js";
-// import { ClientDAO } from "./data-async-service.js";
+import { ClientDAO } from "./data/data-service.js";
+// import { ClientDAO } from "./storage-service.js";
 import { encodeText } from "./util.js";
-import { FormClientCmp } from "./data/form-client-cmp.js";
+import { FormClientCmp } from "./cmp/form-client-cmp.js/index.js";
 
 let dao = new ClientDAO();
 
@@ -23,20 +20,18 @@ function actualiserListeClients(){
                           </tr>`;
             tabClients.innerHTML += trHTML;
         }
-    };
-    
-    let trCreateElement = cli => {
-        let trHTML = document.createElement("tr");
-        let tdNom = document.createElement("td");
-        tdNom.textContent = cli.nom;  
-        let tdPrenom = document.createElement("td");
-        tdPrenom.textContent = cli.prenom;
-        trHTML.appendChild(tdNom); 
-        trHTML.appendChild(tdPrenom);
-        tabClients.appendChild(trHTML);
-    };
+    };    
+    // let trCreateElement = cli => {
+    //     let trHTML = document.createElement("tr");
+    //     let tdNom = document.createElement("td");
+    //     tdNom.textContent = cli.nom;  
+    //     let tdPrenom = document.createElement("td");
+    //     tdPrenom.textContent = cli.prenom;
+    //     trHTML.appendChild(tdNom); 
+    //     trHTML.appendChild(tdPrenom);
+    //     tabClients.appendChild(trHTML);
+    // };
     clients.forEach( trInnerHtml );
-
 }    
 
 actualiserListeClients();
@@ -47,10 +42,7 @@ document
 
 /* --- formulaire nouveau client --- */
 
-let formClientCmp = new FormClientCmp();
-
-
-
+let formClientCmp = new FormClientCmp(actualiserListeClients);
 
 /* --- démo js sur titre h1 --- */
 let titre = document.querySelector("body > header > h1");
@@ -64,8 +56,6 @@ let btnMenu = document.querySelector("body > nav > #btn-menu-close");
 btnMenu.addEventListener("click", (event) => {
     document.body.classList.toggle("menu-closed");
 });
-
-// window.clients = window.clients || [];
 
 /* --- drag&drop fichier json list clients --- */
 let listeClients = document.querySelector("#liste-clients");
@@ -100,8 +90,5 @@ listeClients.addEventListener("drop", event => {
     });
     reader.readAsText(file);
 });
-// document.body.parentNode.addEventListener("drop", event => {
-//     event.preventDefault();
-// }, true);
 
 
