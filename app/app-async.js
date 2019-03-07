@@ -4,7 +4,7 @@ import { clientDAO } from "./data-async/fetch-service.js";
 
 import { FormClientCmp } from "./cmp/form-client-async-cmp.js";
 
-import { encodeText } from "./util.js";
+import { encodeText, notification } from "./util.js";
 
 let dao = clientDAO;
 
@@ -50,6 +50,44 @@ let btnMenu = document.querySelector("body > nav > #btn-menu-close");
 btnMenu.addEventListener("click", (event) => {
     document.body.classList.toggle("menu-closed");
 });
+
+
+
+
+
+/* ---- Import de clients à partir d'un fichier JSON ---- */
+
+document
+    .querySelector("#btnImport")
+    .addEventListener("input", event => {
+        let files = event.target.files;
+        if(files.length !== 0 && files[0].type === "application/json"){
+            let reader = new FileReader();
+            reader.addEventListener("load", event => {
+                let clients = JSON.parse(reader.result);
+                
+                let attentes = [];
+                for (const {nom,prenom} of clients) {
+                // for (const client of clients) {
+                //     let {nom,prenom} = client;
+                    attentes.push(dao.create(nom,prenom));
+                }
+                
+                Promise.all(attentes).then( () => {
+                    actualiserListeClients();
+                });
+
+
+
+            });
+            reader.readAsText(files[0]);
+        }
+    })
+;
+
+
+
+
 
 /* --- drag&drop fichier json list clients --- */
 let listeClients = document.querySelector("#liste-clients");
