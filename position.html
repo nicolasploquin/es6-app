@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>Positioning Demo</title>
+  <style type="text/css">
+    body {
+      text-align: center;
+      margin: auto;
+      max-width: 1000px;
+      border: 2px solid blue;
+    }
+    article {
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        max-width: 800px;
+        margin: 0 auto 0 auto ;
+        border: 2px solid red;
+        
+        position: relative;
+    }
+    div {
+      margin: 0px;
+      padding: 5px;
+      border: 2px solid black;
+      width: 150px;
+      height: 150px;
+      background-color: rgba(255, 255, 0, 0.5);
+
+      
+      
+    }
+    div:nth-child(odd){
+        font-size: 3em;
+		background-color: rgba(255, 0, 0, 0.25);
+    }
+    #deux {
+        position: absolute;
+        bottom: 50px;
+        right: 100px;
+    }
+    
+    
+    
+    
+    
+  </style>
+</head>
+<body>
+  <article>
+    <!-- attention display : inline, ne pas ajouter d'espaces entre les div -->
+    <div id="un">Un</div>
+    <div id="deux">Deux</div>
+    <div id="trois">Trois</div>
+    <div id="quatre">Quatre</div>
+  </article>
+</body>
+</html>

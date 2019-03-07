@@ -1,0 +1,503 @@
+/* --- Règles de base --- */
+
+html {
+    /* Définition des variables */
+    --largeur-colonne: 12em; /* définition d'une dimension standard */
+    --couleur-theme: #06c;
+    --titre-font-size: 1.25rem;
+
+
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 1em;
+    line-height: 1.375em;
+    color: #333;
+
+    background-image: linear-gradient(to bottom, #eee, #999 );
+
+}
+
+h1,h2,h3{
+    margin: 0;
+    padding: .5em 1em; /* remplacer les marges par du padding */
+    font-size: 1.25em;
+    font-weight: 100;
+    font-variant: small-caps;
+    color:var(--couleur-theme); 
+    letter-spacing: .15em;
+}
+
+h1 { 
+    text-align: center;
+    font-size: 2em;
+    text-transform: uppercase;
+}
+
+a {
+    color: inherit;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+table {
+    border: 1px outset #333;
+}
+td, th {
+    border: 1px inset #333;
+}
+
+input, select, option, textarea, button {
+    font-family: inherit;
+    font-size: 1em;
+}
+textarea{
+    resize: vertical;
+}
+
+img, video, audio, canvas, svg, figure {
+    max-width: 100%;
+}
+.scroll-hor {
+    max-width: 100%;
+    overflow: auto;
+}
+
+* {
+    -ransition: all .4s;
+}
+
+/* --- Positionnement absolu --- */
+/* body, header, nav, footer, main, section {
+    outline: 1px dashed navy;
+} */
+
+.pos-abs body {
+    margin: 0; /* supprimer la marge de 8px par défaut. */
+    position: relative;
+    padding-left: var(--largeur-colonne);
+    height: 100vh;
+}
+
+.pos-abs body > nav {
+    position: absolute;
+    width: var(--largeur-colonne);
+    height: 100vh;
+    left: 0;
+    
+}
+.pos-abs body > header > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+.pos-abs body > main {
+    /* hauteur de fenêtre - hauteur header - hauteur footer */
+    max-height: calc(100vh - (3 * var(--titre-font-size)) - 3.375rem); 
+    overflow: auto;
+    padding: 16px;
+    box-sizing: border-box;
+}
+.pos-abs body > footer {
+    position: fixed;
+    bottom: 0;
+    width: calc(100vw - var(--largeur-colonne));
+    background-color: rgba(255,255,255,.8);
+}
+/* --- Positionnement grid --- */
+/* body, header, nav, footer, main, section {
+    outline: 1px dashed navy;
+} */
+
+.pos-grid body {
+    margin: 0; /* supprimer la marge de 8px par défaut. */
+    display: grid;
+    grid-template-columns: var(--largeur-colonne) 1fr;
+    grid-template-rows: auto 1fr auto ;
+    height: 100vh;
+}
+
+.pos-grid body > nav {
+    grid-column: 1;
+    grid-row: 1 / -1;
+}
+.pos-grid body > header {
+    grid-column: 2;
+    grid-row: 1;
+}
+.pos-grids body > main {
+    grid-column: 2;
+    grid-row: 2;
+    
+    padding: 1em;
+}
+.pos-grid body > footer {
+    grid-column: 2;
+    grid-row: -2;
+
+}
+
+
+
+
+/* --- Navigation Onglets --- */
+main > * {
+    display: none;
+    opacity: 0;
+    transition: opacity .2s;
+}
+main > :target {
+    display: block;
+    opacity: 1;
+}
+
+/* --- header (body > header) --- */
+body > header > * { -order: 1px dashed #333; }
+
+body > header {
+    box-shadow: 0 0 4px #666;
+    min-height: 3rem;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+body > header > h1 {
+    font-size: var(--titre-font-size);
+    padding: 0 1em;
+    flex: 0 0 auto;
+}
+body > header > nav {
+    flex: 1 1 auto; /* grow (agrandissement), shrink (réduction), basis (longueur référence) */
+    
+    display: flex; /* pour positionner le contenu du nav (les liens a) */
+    justify-content: center;
+}
+body > header nav a {
+    display: inline-block;
+    border-bottom: 1px solid transparent;
+    padding: .25em 1em;
+}
+body > header nav a:hover,
+body > header nav a:focus {
+    border-bottom-color: var(--couleur-theme);
+}
+
+body > header > button {
+    background: #06a;
+    color: #fff;
+    border: none;
+    margin: 0 8px;
+    padding: .5em 1.5em;
+    line-height: 1em;
+    border-radius: 1em;
+}
+
+body > footer {
+    font-size: .8em;
+    text-align: center;
+    background-color: rgba(255,255,255,.8);
+}
+
+
+/* --- Menu (body > nav) --- */
+body > nav {
+    background-color: #444;
+    color: #eee;
+    position: relative;
+}
+body > nav h3 {
+    color: #fff;
+    text-align: center;
+}
+body > nav a {
+    display: block;
+    padding: .5em 1em;
+}
+body > nav a:hover,
+body > nav a:focus {
+    background-color: #eee;
+    color: #444;
+}
+
+/* --- réduction menu gauche */
+body > nav button {
+    position: absolute;
+    right: 0;
+    display: block;
+    border: none;
+    background: none;
+    color: inherit;
+    padding: 0;
+    margin: 4px;
+    line-height: 1em;
+    width: 1em;
+    text-align: center;
+}
+
+.pos-grid body.menu-closed  {
+    grid-template-columns: 48px 1fr;
+}
+
+body.menu-closed > nav h3 {
+    visibility: hidden;
+}
+body.menu-closed > nav a span {
+    display: none;
+}
+
+body.menu-closed > nav button {
+    transform: rotate(180deg);
+}
+
+
+
+
+
+
+
+/* --- fable (.fable) --- */
+main > * {
+    padding: 1em;
+}
+/* --- fable (.fable) --- */
+.fable .lafontaine {
+    text-align: center;
+}
+
+.fable blockquote {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.2em;
+    line-height: 1.75em;
+    text-align: justify;
+    
+    background-color: #990000;
+    background-image: linear-gradient(to top, #660000, #993333);
+    color: white;
+    
+    padding: 1em 2em;
+    border-radius: 2em;
+}
+.fable blockquote img {
+    float: right;
+}
+
+.eni-article p {
+    text-align: justify;
+}
+.eni-article p img {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    float: right;
+    margin: .5em 0 .5em 1em;
+}
+
+/* liste des liens */
+#telechargement + ul{
+    list-style-type: none;
+    list-style-position: outside;
+    -ist-style-image: url(img/cigale-fourmi.jpg);
+    -adding: 0;
+}
+#telechargement + ul li::before {
+    content: "\20\25CA\20";
+    display: inline-block;
+    width: 1.375em;
+    text-align: center;
+    background-color: white;
+    border-radius: 50%;
+    margin-right: .5em;
+}
+
+
+/* --- tableau (class="eni-table") --- */
+
+.eni-table {
+    --bordure: #9cf;
+    --bordure: #0394;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: .85em;
+}
+
+.eni-table thead {
+    background-color: #039;
+    color: #fff;
+    border-left: 1px solid #039;
+}
+.eni-table tbody {
+    border-bottom: 1px solid #9cf;
+    border-bottom: 1px solid var(--bordure);
+}
+.eni-table th,
+.eni-table td {
+    padding: .5em 1em;
+}
+.eni-table tbody td {
+    border: 1px  var(--bordure);
+    border-style: none solid;
+}
+
+
+.eni-table tbody tr:nth-child(odd) { /* lignes impaires */
+    background-color: #eee;
+}
+.eni-table tbody tr:nth-child(even) { /* lignes impaires */
+    background-color: #ddd;
+}
+.eni-table tbody tr:hover { /* survol */
+    background-color: var(--bordure);
+    color: #fff;
+}
+/* règles spécifiques au tableau d'opérations */
+#detail-compte .eni-table tbody td:nth-child(3) {
+    text-align: right;
+    background-color: var(--bordure);
+    color: #fff;
+}
+#detail-compte .eni-table tbody td:nth-child(4) {
+    text-align: center;
+}
+
+
+
+/* --- formulaire (class="eni-form") */
+
+.eni-form label {
+    padding: .25em 1em;
+    margin-bottom: .5em;
+    text-align: right;
+}
+/*.eni-form input, .eni-form textarea, .eni-form select {*/
+.eni-form > label + * {
+        padding: .25em 1em;
+    margin-bottom: .5em;
+    border: 0 none;
+    border-left: 5px solid #999;
+    border-right: 5px solid #999;
+}
+
+.eni-form [required]:valid,
+.eni-form [pattern]:valid,
+.eni-form [type=date]:valid,
+.eni-form [type=email]:valid,
+.eni-form [type=number]:valid {
+    border-right-color: #090;
+}
+.eni-form :invalid {
+    outline: none;
+    box-shadow: none;
+    border-right-color: #f00;
+}
+
+.eni-form :focus {
+    outline: none;
+    box-shadow: none;
+    border-left-color: #006;
+}
+.eni-form button:disabled {
+    opacity: 0.3;
+}
+
+/* form:invalid button[type=submit] {
+    display: none;
+} */
+
+
+/* --- formulaire inline-block (class="eni-form inline") */
+.eni-form.inline label {
+    display: inline-block;
+    width: 6em;
+}
+.eni-form.inline label + * { /* input et select */
+    display: inline-block;
+    width: 12em;
+    box-sizing: border-box;
+}
+
+/* --- formulaire grid layout (class="eni-form grid") */
+.eni-form.grid {
+    display: grid;
+    grid-template-columns: 8em minmax(auto, 16em); 
+}
+.eni-form.grid .form-control {
+    grid-column: 2; 
+}
+.eni-form.grid .form-control {
+    grid-column: 2; 
+}
+
+/* --- largeur inférieure ou égale à 810px --- */
+
+
+/* --- Carte Google maps --- */
+#carte {
+    width: 100%;
+    height: 400px;
+    box-shadow: 0 0 16px #444;
+}
+/* --- Drag&Drop liste de clients JSON --- */
+#liste-clients.dragfile {
+    background-color: #0393;
+}
+
+
+
+/* ------------------------------------ Vue adaptative ------------------------------------------------- */
+
+/* --- largeur inférieure ou égale à 810px --- */
+@media screen and (max-width: 850px) {
+    
+    html {
+        --largeur-colonne: 48px; 
+    }
+    body.menu-open {
+        --largeur-colonne: 12rem; 
+    }
+    body:not(.menu-open) {
+        --largeur-colonne: 48px; 
+    }
+    
+    body > nav h3 {
+        display: none;
+    }
+    body > nav a span {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 660px) {
+
+    body > header h1 {
+        flex: 1 1 100%;
+    }
+    body > header nav {
+        justify-content: flex-start;
+    }
+    body > header nav a {
+        padding: 0.1em 0.25em;
+    }
+    
+
+
+
+}
+
+@media screen and (max-width: 530px) {
+
+    .eni-form label {
+        margin-bottom: 0;
+    }
+    .eni-form .form-control{
+        text-align: center;
+    }
+    .eni-form.grid {
+        grid-template-columns: 1fr; 
+    }
+    .eni-form.grid .form-control {
+        grid-column: unset; 
+    }
+
+}

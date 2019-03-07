@@ -1,0 +1,7 @@
+main {
+    -order: 10px dashed yellow;
+}
+
+body > *:not(main){
+    display: none;
+}
