@@ -56,7 +56,6 @@ btnMenu.addEventListener("click", (event) => {
 
 
 /* ---- Import de clients à partir d'un fichier JSON ---- */
-
 document
     .querySelector("#btnImport")
     .addEventListener("input", event => {
