@@ -4,7 +4,7 @@ import { ClientDAO } from "./rest-service.js";
 // import { ClientDAO } from "./fetch-service.js";
 // import { ClientDAO } from "./data-async-service.js";
 import { encodeText } from "./util.js";
-import { FormClientCmp } from "./form-client-cmp.js";
+import { FormClientCmp } from "./data/form-client-cmp.js";
 
 let dao = new ClientDAO();
 
