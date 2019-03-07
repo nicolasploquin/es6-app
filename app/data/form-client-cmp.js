@@ -3,63 +3,63 @@ import { ClientDAO } from "./storage-service.js";
 
 
 export class FormClientCmp{
-    constructor(){}
-}
+    constructor(update){
+        this.update = update;
+
+        this.dao = new ClientDAO();
+
+        this.formClient = document.querySelector("#form-client");
+        this.btnSubmit = formClient.querySelector("[type=submit]");
+        this.inputNom = formClient.querySelector("#ac-nom");
+        this.inputPrenom = formClient.querySelector("#ac-prenom");
+        this.inputAdresse = formClient.querySelector("textarea");
+        this.inputEmail = formClient.querySelector("#ac-email");
+        this.inputEmailVerif = formClient.querySelector("#ac-email-verif");
+
+        this.inputEmail.addEventListener("input",this.emailVerif.bind(this));
+        this.inputEmailVerif.addEventListener("input",this.emailVerif.bind(this));
+        this.formClient.addEventListener("focusout",this.afficherErreurs.bind(this));
+        this.formClient.addEventListener("submit",this.enregistrerClient.bind(this));
 
 
-let dao = new ClientDAO();
+        this.btnSubmit.disabled = !this.formClient.checkValidity(); // vérification initiale
 
+        this.formClient.addEventListener("input",()=>{
+            this.btnSubmit.disabled = !this.formClient.checkValidity();
+        });
 
-let formClient = document.querySelector("#form-client");
-let btnSubmit = formClient.querySelector("[type=submit]");
-let inputNom = formClient.querySelector("#ac-nom");
-let inputPrenom = formClient.querySelector("#ac-prenom");
-let inputAdresse = formClient.querySelector("textarea");
-let inputEmail = formClient.querySelector("#ac-email");
-let inputEmailVerif = formClient.querySelector("#ac-email-verif");
-
-// inputAdresse.setCustomValidity("Il y a une erreur dans l'adresse...");
-// // inputAdresse.setCustomValidity("");
-// formClient.reportValidity();
-
-function emailVerif(){
-    let email1 = inputEmail.value.trim();
-    let email2 = inputEmailVerif.value.trim();
-
-    if(email1 === email2){
-        inputEmailVerif.setCustomValidity("");
-    }else{
-        inputEmailVerif.setCustomValidity("Les deux adresses e-mail doivent être identiques.");
     }
-};
-function afficherErreurs(){
-    formClient.reportValidity();
-}
 
-//async 
-function enregistrerClient(event){
-    event.preventDefault();
-    let nom = inputNom.value.trim().toUpperCase();
-    let prenom = inputPrenom.value.trim();
-    // await dao.create(nom, prenom);
-    dao.create(nom, prenom);
-    // actualiserListeClients();
-    // window.location = "#liste-clients"
-    // notif(`Client ${nom} enregistré.`);
+    emailVerif(){
+        let email1 = this.inputEmail.value.trim();
+        let email2 = this.inputEmailVerif.value.trim();
+    
+        if(email1 === email2){
+            this.inputEmailVerif.setCustomValidity("");
+        }else{
+            this.inputEmailVerif.setCustomValidity("Les deux adresses e-mail doivent être identiques.");
+        }
+    };
+    afficherErreurs(){
+        this.formClient.reportValidity();
+    }
+    
+    enregistrerClient(event){
+        event.preventDefault();
+        let nom = this.inputNom.value.trim().toUpperCase();
+        let prenom = this.inputPrenom.value.trim();
+        // await dao.create(nom, prenom);
+        this.dao.create(nom, prenom);
+        // actualiserListeClients();
+        // window.location = "#liste-clients"
+        // notif(`Client ${nom} enregistré.`);
+        
+        this.update();
+    }
     
 }
 
-inputEmail.addEventListener("input",emailVerif);
-inputEmailVerif.addEventListener("input",emailVerif);
-formClient.addEventListener("focusout",afficherErreurs);
-formClient.addEventListener("submit",enregistrerClient);
 
-
-btnSubmit.disabled = !formClient.checkValidity(); // vérification initiale
-
-formClient.addEventListener("input",()=>{
-    btnSubmit.disabled = !formClient.checkValidity();
-});
 
 // écouter l'événement input sur les deux champs
 // lire et comparer les deux valeurs
