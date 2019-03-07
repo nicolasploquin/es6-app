@@ -13,13 +13,13 @@ async function actualiserListeClients(){
     let clients = await dao.readAll();
     // .then(clients => {
         
-        let tabClients = document.querySelector("#liste-clients table > tbody");
-        tabClients.innerHTML = "";
-        
-        clients.forEach( cli => {
-            tabClients.innerHTML += 
-            `<tr><td>${encodeText(cli.nom)}</td><td>${encodeText(cli.prenom)}</td></tr>`;
-        });
+    let tabClients = document.querySelector("#liste-clients table > tbody");
+    tabClients.innerHTML = "";
+    
+    clients.forEach( cli => {
+        tabClients.innerHTML += 
+        `<tr><td>${encodeText(cli.nom)}</td><td>${encodeText(cli.prenom)}</td></tr>`;
+    });
         
     // });
 }    
