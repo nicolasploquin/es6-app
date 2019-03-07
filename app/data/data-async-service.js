@@ -1,4 +1,4 @@
-import {Client} from "../model/client.js/index.js";
+import {Client} from "../model/client.js";
 
 export class ClientDAO {
 

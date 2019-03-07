@@ -1,7 +1,7 @@
-import { ClientDAO } from "./data/data-service.js";
-// import { ClientDAO } from "./storage-service.js";
+// import { ClientDAO } from "./data/data-service.js";
+import { ClientDAO } from "./data/storage-service.js";
 import { encodeText } from "./util.js";
-import { FormClientCmp } from "./cmp/form-client-cmp.js/index.js";
+import { FormClientCmp } from "./cmp/form-client-cmp.js";
 
 let dao = new ClientDAO();
 

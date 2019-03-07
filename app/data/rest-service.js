@@ -1,4 +1,4 @@
-import {Client} from "./client.js";
+import {Client} from "../model/client.js";
 
 const url = "https://banque-api.azurewebsites.net/api";
 

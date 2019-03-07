@@ -1,4 +1,4 @@
-// import { ClientDAO } from "./data-service.js";
+// import { ClientDAO } from "../data/data-service.js";
 import { ClientDAO } from "../data/storage-service.js";
 
 
@@ -9,17 +9,17 @@ export class FormClientCmp{
         this.dao = new ClientDAO();
 
         this.formClient = document.querySelector("#form-client");
-        this.btnSubmit = formClient.querySelector("[type=submit]");
-        this.inputNom = formClient.querySelector("#ac-nom");
-        this.inputPrenom = formClient.querySelector("#ac-prenom");
-        this.inputAdresse = formClient.querySelector("textarea");
-        this.inputEmail = formClient.querySelector("#ac-email");
-        this.inputEmailVerif = formClient.querySelector("#ac-email-verif");
+        this.btnSubmit = this.formClient.querySelector("[type=submit]");
+        this.inputNom = this.formClient.querySelector("#ac-nom");
+        this.inputPrenom = this.formClient.querySelector("#ac-prenom");
+        this.inputAdresse = this.formClient.querySelector("textarea");
+        this.inputEmail = this.formClient.querySelector("#ac-email");
+        this.inputEmailVerif = this.formClient.querySelector("#ac-email-verif");
 
-        this.inputEmail.addEventListener("input",this.emailVerif.bind(this));
-        this.inputEmailVerif.addEventListener("input",this.emailVerif.bind(this));
-        this.formClient.addEventListener("focusout",this.afficherErreurs.bind(this));
-        this.formClient.addEventListener("submit",this.enregistrerClient.bind(this));
+        this.inputEmail.addEventListener("input", event => { this.emailVerif(event); });
+        this.inputEmailVerif.addEventListener("input", event => { this.emailVerif(event); });
+        this.formClient.addEventListener("focusout", event => { this.afficherErreurs(event); });
+        this.formClient.addEventListener("submit", event => { this.enregistrerClient(event); });
 
 
         this.btnSubmit.disabled = !this.formClient.checkValidity(); // vérification initiale
