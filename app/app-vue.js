@@ -19,9 +19,11 @@ let clientsCmp = new Vue({
     data: dataVue,
     methods: {
         actualiser: (async () => dataVue.clients = await dao.readAll()),
-        selectionner: ((event) => {
+        selectionner: (async (event) => {
             let ligne = event.target.parentNode;
-            dataVue.selectedClient = new Client(ligne.cells[0].textContent, ligne.cells[1].textContent);
+            let clientId = Number(ligne.dataset.id);
+            dataVue.selectedClient = await dao.read(clientId);
+            // dataVue.selectedClient = new Client(ligne.cells[0].textContent, ligne.cells[1].textContent);
         })
     } ,
     mounted: function(){

@@ -19,9 +19,8 @@ class ClientDAO {
         return fetch(url).then(resp => resp.json());
     }
 
-    read(id){
-        
-        return {};
+    read(id){ 
+        return fetch(`${url}/${id}`).then(resp => resp.json());
     }
     readNom(nom){
         return {}; // this.clients.filter(cli => cli.nom === nom);       

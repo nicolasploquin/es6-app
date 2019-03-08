@@ -17,7 +17,7 @@ class ClientDAO {
         return this.clients;       
     }
     read(id){
-        return this.clients.find(cli => cli.id === id);  
+        return this.clients.find(cli => cli.id == id);  
     }
     readNom(nom){
         return this.clients.filter(cli => cli.nom === nom);       
@@ -27,10 +27,7 @@ class ClientDAO {
         client.id = 0;
         if(this.clients.length > 0)
             client.id = Math.max(...this.clients.map(cli => cli.id)) + 1;
-        this.clients[this.clients.length] = client;
-        // this.clients.push(client);
-        console.dir(client);
-        console.log(this.clients.length);
+        this.clients.push(client);
         save(this.clients);
     }
 }

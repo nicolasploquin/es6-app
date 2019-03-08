@@ -106,7 +106,7 @@
                 </thead>
                 <tbody v-on:click="selectionner">
                     <tr v-if="clients.length == 0"><td colspan="2">aucun client</td></tr>
-                    <tr v-for="client in clients">
+                    <tr v-for="client in clients" v-bind:data-id="client.id">
                         <td>{{client.nom}}</td><td>{{client.prenom}}</td>
                     </tr>
                 </tbody>
