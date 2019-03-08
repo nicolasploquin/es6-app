@@ -1,4 +1,4 @@
-import { clientDAO } from "./data/fetch-service.js";
+import { clientDAO } from "./data-async/fetch-service.js";
 import { encodeText, notification } from "./util.js";
 
 let dao = clientDAO;
@@ -15,7 +15,7 @@ let clientsCmp = new Vue({
     el: "#liste-clients",
     data: dataVue,
     methods: {
-        actualiser: actualiserClients
+        actualiser: (async () => dataVue.clients = await dao.readAll())
     } ,
     mounted: function(){
         actualiserClients();

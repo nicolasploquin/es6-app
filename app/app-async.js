@@ -73,6 +73,7 @@ let sectionClients = document.querySelector("#liste-clients");
 sectionClients.addEventListener("drop", event => {
     event.preventDefault(); // Annuler l'ouverture du fichier dans l'onglet
     importJson(event.dataTransfer.files);
+    sectionClients.classList.remove("dragfile");
 });
 sectionClients.addEventListener("dragover", event => {
     event.preventDefault(); // Autoriser le drop dans cette zone
@@ -99,15 +100,13 @@ function importJson(files){
             
             await Promise.all(attentes); // Promise.race()
             actualiserListeClients();
+
+            notification(`${clients.length} clients importés`);
             
         });
         reader.readAsText(files[0]);
     }
 }
-        
-
-
-
 
 
 // /* --- drag&drop fichier json list clients --- */

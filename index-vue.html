@@ -104,6 +104,7 @@
                     <tr><th>Nom</th><th>Prénom</th></tr>
                 </thead>
                 <tbody>
+                    <tr v-if="clients.length == 0"><td colspan="2">aucun client</td></tr>
                     <tr v-for="client in clients">
                         <td>{{client.nom}}</td><td>{{client.prenom}}</td>
                     </tr>
@@ -122,7 +123,7 @@
                 <label for="ac-adresse">Adresse</label>
                 <textarea id="ac-adresse" name="adresse" rows="3">10 rue des Sports</textarea>
                 <label for="ac-email">E-mail*</label>
-                <input id="ac-email" name="email" type="email" required/>
+                <input id="ac-email" name="email" type="email" />
                 <label for="ac-email-verif">Confirmation E-mail</label>
                 <input id="ac-email-verif" name="email-verif" type="email" />
                 <label for="ac-tel">Téléphone</label>

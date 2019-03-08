@@ -17,7 +17,7 @@ export function notification(message){
     var footer = document.querySelector("body > footer");
     footer.insertBefore(elemP, footer.firstElementChild);
     
-    setTimeout(() => elemP.remove(), 5000)
+    setTimeout(() => elemP.remove(), 5000);
     
     
 }

@@ -443,6 +443,13 @@ main > * {
     background-color: #0393;
 }
 
+/* --- Notification --- */
+.eni-notif {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    margin: 0;
+}
 
 
 /* ------------------------------------ Vue adaptative ------------------------------------------------- */
