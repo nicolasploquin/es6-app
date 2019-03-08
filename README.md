@@ -8,5 +8,6 @@ Projet de formation JavaScript
 - Manipulation du DOM
 - API LocalStorage
 - API XMLHttpRequest / Fetch
+- API FileReader avec drag&drop
 
 Déploiement Azure : http://es6-app.azurewebsites.net/
