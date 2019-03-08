@@ -1,5 +1,7 @@
-import { clientDAO } from "./data/fetch-service.js";
+import { clientDAO } from "./data-async/fetch-service.js";
 import { encodeText, notification } from "./util.js";
+import { ClientCmp } from "./cmp/client-cmp.js";
+import { Client } from "./model/client.js";
 
 let dao = clientDAO;
 
@@ -7,7 +9,8 @@ let dao = clientDAO;
 
 let dataVue = {
     titreCmp: "Liste des clients",
-    clients: []
+    clients: [],
+    selectedClient: null
 };
 
 
@@ -15,10 +18,19 @@ let clientsCmp = new Vue({
     el: "#liste-clients",
     data: dataVue,
     methods: {
-        actualiser: actualiserClients
+        actualiser: (async () => dataVue.clients = await dao.readAll()),
+        selectionner: (async (event) => {
+            let ligne = event.target.parentNode;
+            let clientId = Number(ligne.dataset.id);
+            dataVue.selectedClient = await dao.read(clientId);
+            // dataVue.selectedClient = new Client(ligne.cells[0].textContent, ligne.cells[1].textContent);
+        })
     } ,
     mounted: function(){
         actualiserClients();
+    },
+    components: {
+        "eni-client": ClientCmp
     }
 });
 

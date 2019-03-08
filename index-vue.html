@@ -34,6 +34,7 @@
             <a href="#ajouter-client">Nouveau</a>
             <a href="#detail-compte">Détails</a>
             <a href="#form-operation">Opération</a>
+            <a href="index.html">ES6+</a>
         </nav>
         <button>Connexion</button>
     </header>
@@ -99,12 +100,14 @@
         <section id="liste-clients">
             <h2>{{titreCmp}}</h2>
             <button id="btnClients" v-on:click="actualiser">Actualiser</button>
+            <eni-client v-if="selectedClient" v-bind:client="selectedClient"></eni-client>
             <table class="eni-table">
                 <thead>
                     <tr><th>Nom</th><th>Prénom</th></tr>
                 </thead>
-                <tbody>
-                    <tr v-for="client in clients">
+                <tbody v-on:click="selectionner">
+                    <tr v-if="clients.length == 0"><td colspan="2">aucun client</td></tr>
+                    <tr v-for="client in clients" v-bind:data-id="client.id">
                         <td>{{client.nom}}</td><td>{{client.prenom}}</td>
                     </tr>
                 </tbody>
@@ -122,7 +125,7 @@
                 <label for="ac-adresse">Adresse</label>
                 <textarea id="ac-adresse" name="adresse" rows="3">10 rue des Sports</textarea>
                 <label for="ac-email">E-mail*</label>
-                <input id="ac-email" name="email" type="email" required/>
+                <input id="ac-email" name="email" type="email" />
                 <label for="ac-email-verif">Confirmation E-mail</label>
                 <input id="ac-email-verif" name="email-verif" type="email" />
                 <label for="ac-tel">Téléphone</label>

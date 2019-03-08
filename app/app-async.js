@@ -59,63 +59,87 @@ btnMenu.addEventListener("click", (event) => {
 document
     .querySelector("#btnImport")
     .addEventListener("input", event => {
-        let files = event.target.files;
-        if(files.length !== 0 && files[0].type === "application/json"){
-            let reader = new FileReader();
-            reader.addEventListener("load", async (event) => {
-                let clients = JSON.parse(reader.result);
-                
-                let attentes = [];
-                for (const {nom,prenom} of clients) {
-                // for (const client of clients) {
-                //     let {nom,prenom} = client;
-                    attentes.push(dao.create(nom,prenom));
-                }
-                
-                await Promise.all(attentes); // Promise.race()
-                actualiserListeClients();
-
-            });
-            reader.readAsText(files[0]);
-        }
+        importJson(event.target.files);
     })
 ;
+/* ---- Import de clients à partir d'un drag&drop sur le tableau de client  ---- */
 
+// elem  -> table client
+// event -> drop ... event.preventDefault
+// files -> event.dataTransfer.files
+// event -> dragover ... event.preventDefault
 
-
-
-
-/* --- drag&drop fichier json list clients --- */
-let listeClients = document.querySelector("#liste-clients");
-listeClients.addEventListener("dragover", event => {
-//    console.dir(event.dataTransfer);
-    let items = event.dataTransfer.items;
-    if (items.length > 0 && items[0].type === "application/json" ) {
-        event.preventDefault();
-        listeClients.classList.add("dragfile");
-    }
+let sectionClients = document.querySelector("#liste-clients");
+sectionClients.addEventListener("drop", event => {
+    event.preventDefault(); // Annuler l'ouverture du fichier dans l'onglet
+    importJson(event.dataTransfer.files);
+    sectionClients.classList.remove("dragfile");
 });
-listeClients.addEventListener("dragleave", event => {
-    listeClients.classList.remove("dragfile");
+sectionClients.addEventListener("dragover", event => {
+    event.preventDefault(); // Autoriser le drop dans cette zone
+    sectionClients.classList.add("dragfile");
+});
+sectionClients.addEventListener("dragleave", event => {
+    sectionClients.classList.remove("dragfile");
 });
 
-listeClients.addEventListener("drop", event => {
-    event.preventDefault();
 
-    listeClients.classList.remove("dragfile");
-    console.dir("ficher json reçu !");
+function importJson(files){
 
-    let file = event.dataTransfer.items[0].getAsFile();
-    let reader = new FileReader();
-    reader.addEventListener("load", async (fr, event) => {
-        let attentes = [];
-        let clients = JSON.parse(reader.result);
-        clients.forEach(client => {
-            attentes.push(dao.create(client.nom,client.prenom));
+    if(!!files[0] && files[0].type === "application/json"){
+        let reader = new FileReader();
+        reader.addEventListener("load", async (event) => {
+            let clients = JSON.parse(reader.result);
+            
+            let attentes = [];
+            for (const {nom,prenom} of clients) {
+            // for (const client of clients) {
+                //     let {nom,prenom} = client;
+                attentes.push(dao.create(nom,prenom));
+            }
+            
+            await Promise.all(attentes); // Promise.race()
+            actualiserListeClients();
+
+            notification(`${clients.length} clients importés`);
+            
         });
-        await Promise.all(attentes);
-        actualiserListeClients();
-    });
-    reader.readAsText(file);
-});
+        reader.readAsText(files[0]);
+    }
+}
+
+
+// /* --- drag&drop fichier json list clients --- */
+// let listeClients = document.querySelector("#liste-clients");
+// listeClients.addEventListener("dragover", event => {
+// //    console.dir(event.dataTransfer);
+//     let items = event.dataTransfer.items;
+//     if (items.length > 0 && items[0].type === "application/json" ) {
+//         event.preventDefault();
+//         listeClients.classList.add("dragfile");
+//     }
+// });
+// listeClients.addEventListener("dragleave", event => {
+//     listeClients.classList.remove("dragfile");
+// });
+
+// listeClients.addEventListener("drop", event => {
+//     event.preventDefault();
+
+//     listeClients.classList.remove("dragfile");
+//     console.dir("ficher json reçu !");
+
+//     let file = event.dataTransfer.items[0].getAsFile();
+//     let reader = new FileReader();
+//     reader.addEventListener("load", async (fr, event) => {
+//         let attentes = [];
+//         let clients = JSON.parse(reader.result);
+//         clients.forEach(client => {
+//             attentes.push(dao.create(client.nom,client.prenom));
+//         });
+//         await Promise.all(attentes);
+//         actualiserListeClients();
+//     });
+//     reader.readAsText(file);
+// });
 

@@ -1,5 +1,6 @@
 // import { clientDAO } from "../data/data-service.js";
 import { clientDAO } from "../data/storage-service.js";
+import { notification } from "../util.js";
 
 
 export class FormClientCmp{
@@ -48,13 +49,15 @@ export class FormClientCmp{
         event.preventDefault();
         let nom = this.inputNom.value.trim().toUpperCase();
         let prenom = this.inputPrenom.value.trim();
-        // await dao.create(nom, prenom);
+
         this.dao.create(nom, prenom);
-        // actualiserListeClients();
-        // window.location = "#liste-clients"
-        // notif(`Client ${nom} enregistré.`);
-        console.log(nom);
+
+        notification(`Client ${nom} enregistré.`);
+        
+        window.location = "#liste-clients";
         this.update();
+
+        
     }
     
 }
