@@ -27,13 +27,12 @@ class ClientDAO {
         return {}; // this.clients.filter(cli => cli.nom === nom);       
     }
     async create(nom, prenom){
-        let client = new Client(nom,prenom);
         return fetch(url,{
             method: 'POST',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(client)
+            body: JSON.stringify(new Client(nom,prenom))
         });
 
     }
