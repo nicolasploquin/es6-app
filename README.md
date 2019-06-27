@@ -1,5 +1,7 @@
 # JavaScript
 
+v1.0.0
+
 Projet de formation JavaScript
 
 - Bases du langage
