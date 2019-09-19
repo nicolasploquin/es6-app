@@ -164,11 +164,12 @@ body > header {
 
 body > header > h1 {
     font-size: var(--titre-font-size);
-    padding: 0 1em;
-    flex: 0 0 auto;
+    padding: .25em 1em;
+    flex: 1 0 auto;
+    text-align: left;
 }
 body > header > nav {
-    flex: 1 1 auto; /* grow (agrandissement), shrink (réduction), basis (longueur référence) */
+    flex: 100 1 auto; /* grow (agrandissement), shrink (réduction), basis (longueur référence) */
     
     display: flex; /* pour positionner le contenu du nav (les liens a) */
     justify-content: center;
@@ -193,11 +194,23 @@ body > header > button {
     border-radius: 1em;
 }
 
+@media screen and (max-width: 1200px) {
+    body > header > nav {
+        order: 3;
+        flex: 1 1 100%;
+    }
+}
+
+
+
+
 body > footer {
     font-size: .8em;
     text-align: center;
     background-color: rgba(255,255,255,.8);
 }
+
+
 
 
 /* --- Menu (body > nav) --- */
