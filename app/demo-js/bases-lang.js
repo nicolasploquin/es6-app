@@ -215,10 +215,12 @@
             let Personne = function(pNom, pPrenom){
                 this.nom = pNom != undefined ? pNom : "";
                 this.prenom = pPrenom != undefined ? pPrenom : "";
-                this.afficher = function(){
-                    console.log(`${this.prenom} ${this.nom}`);
-                }
             }
+
+            Personne.prototype.afficher = function(){
+                console.log(`${this.prenom} ${this.nom}`);
+            };
+            
 
             let p2 = new Personne();
             p2.nom = "Martin";
