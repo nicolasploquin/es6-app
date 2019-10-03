@@ -5,6 +5,7 @@ import { clientDAO } from "./data-async/fetch-service.js";
 import { FormClientCmp } from "./cmp/form-client-async-cmp.js";
 
 import { encodeText, notification } from "./util.js";
+import { authFormCmp } from "./cmp/form-auth-cmp.js";
 
 let dao = clientDAO;
 
@@ -142,4 +143,10 @@ function importJson(files){
 //     });
 //     reader.readAsText(file);
 // });
+
+
+/* ---- Authentification ---- */
+
+authFormCmp.init();
+
 

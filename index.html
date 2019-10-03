@@ -35,7 +35,7 @@
             <a href="#form-operation">Opération</a>
             <a href="index-vue.html">VueJS</a>
         </nav>
-        <button>Connexion</button>
+        <button id="btnAuth">Connexion</button>
     </header>
     <main>
         <section id="fable" class="fable">
@@ -213,5 +213,14 @@
     <footer>
         <p>&copy; ENI Service - octobre 2018</p>
     </footer>
+    <aside id="form-auth">
+        <form>
+            <h3>Authentification</h3>
+            <input name="username" required placeholder="Identifiant" />
+            <input type="password" name="password" required placeholder="Mot de passe" />
+            <label><input type="checkbox" name="storeAuth" /> Conserver l'authentification</label>
+            <button type="submit">OK</button>
+        </form>
+    </aside>
 </body>
 </html>

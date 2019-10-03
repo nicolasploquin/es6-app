@@ -1,6 +1,6 @@
 import {Client} from "../model/client.js";
 
-const url = "https://core-webapi.azurewebsites.net/api/clients";
+const url = "https://banque.azurewebsites.net/api";
 
 class ClientDAO {
 
@@ -8,28 +8,32 @@ class ClientDAO {
        
     }
 
-    // readAll(){
-    //     return new Promise((resolve,reject) => {
-    //         fetch(`${url}/clients`).then(resp => {
-    //             resolve(resp.json());
-    //         });
-    //     });
-    // }
     async readAll(){
-        return fetch(url).then(resp => resp.json());
+        return fetch(`${url}/clients`).then(resp => resp.json());
     }
 
     read(id){ 
-        return fetch(`${url}/${id}`).then(resp => resp.json());
+        return fetch(`${url}/clients/${id}`).then(resp => resp.json());
     }
     readNom(nom){
         return {}; // this.clients.filter(cli => cli.nom === nom);       
     }
     async create(nom, prenom){
-        return fetch(url,{
+
+        let auth = localStorage.auth || sessionStorage.auth;
+
+        // Si le token n'existe pas retour
+        if(!auth) {
+            return Promise.resolve();
+        }
+
+        let token = JSON.parse(auth).token;
+
+        return fetch(`${url}/clients/auth`, {
             method: 'POST',
             headers:{
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(new Client(nom,prenom))
         });
