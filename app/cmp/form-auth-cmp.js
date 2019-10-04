@@ -14,7 +14,6 @@ class AuthFormCmp {
         btnAuth.addEventListener("click",()=>{
             this.showForm();
         });
-
         this.form.addEventListener("submit", event => {
             event.preventDefault();
 
@@ -61,6 +60,18 @@ class AuthFormCmp {
             
         });
 
+        this.form.addEventListener("reset", event => {
+            history.back();
+        });
+
+        window.addEventListener("popstate", event => {
+            if(event.state && event.state.action === "open-auth-form"){
+                this.form.parentElement.classList.add("show");
+            }else{
+                this.form.parentElement.classList.remove("show");
+            }
+        });
+
     }
 
     afficher(){
@@ -68,6 +79,7 @@ class AuthFormCmp {
 
     showForm(){
         this.form.parentElement.classList.add("show");
+        history.pushState({action:"open-auth-form"},"Authentification");
     }
 
 

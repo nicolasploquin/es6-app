@@ -123,4 +123,12 @@ function importJSON(files) {
 
 authFormCmp.init();
 
+/* ---- History API ---- */
+
+console.log(history);
+
+// history.back();
+
+//history.addEventListener("popstate")
+
 
