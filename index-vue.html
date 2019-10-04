@@ -99,19 +99,22 @@
         </section>
         <section id="liste-clients">
             <h2>{{titreCmp}}</h2>
+            <p>{{effectif}} clients</p>
             <button id="btnClients" v-on:click="actualiser">Actualiser</button>
             <eni-client v-if="selectedClient" v-bind:client="selectedClient"></eni-client>
+            <label>Rechercher <input v-model="recherche" /> <small>{{recherche}}</small></label>
             <table class="eni-table">
                 <thead>
                     <tr><th>Nom</th><th>Prénom</th></tr>
                 </thead>
                 <tbody v-on:click="selectionner">
-                    <tr v-if="clients.length == 0"><td colspan="2">aucun client</td></tr>
-                    <tr v-for="client in clients" v-bind:data-id="client.id">
+                    <tr v-if="rechClients.length == 0"><td colspan="2">aucun client</td></tr>
+                    <tr v-for="client in rechClients" v-bind:data-id="client.id">
                         <td>{{client.nom}}</td><td>{{client.prenom}}</td>
                     </tr>
                 </tbody>
             </table>
+            <eni-client v-bind:client="{nom:'Troadec',prenom:'Lou-Ann'}"></eni-client>
         </section>
         <section id="ajouter-client">
             <h2>Ajouter Client</h2>
