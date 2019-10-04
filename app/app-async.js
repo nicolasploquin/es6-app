@@ -52,97 +52,71 @@ btnMenu.addEventListener("click", (event) => {
     document.body.classList.toggle("menu-closed");
 });
 
-
-
-
-
-/* ---- Import de clients à partir d'un fichier JSON ---- */
-document
-    .querySelector("#btnImport")
-    .addEventListener("input", event => {
-        importJson(event.target.files);
-    })
-;
-/* ---- Import de clients à partir d'un drag&drop sur le tableau de client  ---- */
-
-// elem  -> table client
-// event -> drop ... event.preventDefault
-// files -> event.dataTransfer.files
-// event -> dragover ... event.preventDefault
-
-let sectionClients = document.querySelector("#liste-clients");
-sectionClients.addEventListener("drop", event => {
-    event.preventDefault(); // Annuler l'ouverture du fichier dans l'onglet
-    importJson(event.dataTransfer.files);
-    sectionClients.classList.remove("dragfile");
+/* ---- Drag & Drop d'une liste de clients ---- */
+// element drop
+let dropArea = document.querySelector("#liste-clients");
+dropArea.addEventListener("dragover", event => {
+    event.preventDefault(); // par défaut, le navigateur ignore le drag&drop en JavaScript
+    let items = event.dataTransfer.items; // liste de éléments déplacés
+    if(items.length > 0 && items[0].type === "application/json"){ // Si c'est un fichier JSON
+        console.log('json ok');
+        dropArea.classList.add("dragfile");
+        // event.dataTransfer.effectAllowed = "copy";
+        event.dataTransfer.dropEffect = "copy";
+    }else{
+        console.log('autre format');
+        // event.dataTransfer.effectAllowed = "none";
+        event.dataTransfer.dropEffect = "none";
+    }
 });
-sectionClients.addEventListener("dragover", event => {
-    event.preventDefault(); // Autoriser le drop dans cette zone
-    sectionClients.classList.add("dragfile");
+dropArea.addEventListener("dragleave", event => {
+    dropArea.classList.remove("dragfile");
 });
-sectionClients.addEventListener("dragleave", event => {
-    sectionClients.classList.remove("dragfile");
+
+dropArea.addEventListener("drop", event => {
+    event.preventDefault();
+    dropArea.classList.remove("dragfile");
+    console.log("drop du contenu dans la zone...");
+    console.dir(event.dataTransfer.files);
+    importJSON( event.dataTransfer.files ); 
 });
 
 
-function importJson(files){
 
-    if(!!files[0] && files[0].type === "application/json"){
+// input type="file"
+let btnImport = document.querySelector("#btnImport");
+btnImport.addEventListener("change", event => importJSON(btnImport.files) ); 
+
+function importJSON(files) {
+    if(files.length > 0 && files[0].type === "application/json"){
+        
         let reader = new FileReader();
-        reader.addEventListener("load", async (event) => {
-            let clients = JSON.parse(reader.result);
-            
-            let attentes = [];
-            for (const {nom,prenom} of clients) {
-            // for (const client of clients) {
-                //     let {nom,prenom} = client;
-                attentes.push(dao.create(nom,prenom));
-            }
-            
-            await Promise.all(attentes); // Promise.race()
-            actualiserListeClients();
+        reader.addEventListener("load", event => {
+            // console.log(reader.result);
+            try {
 
-            notification(`${clients.length} clients importés`);
-            
+                let clients = JSON.parse(reader.result);
+                let promises = [];
+                clients.forEach( cli => promises.push(clientDAO.create(cli.nom, cli.prenom)) );
+                Promise.all(promises).then( () => actualiserListeClients() );
+
+            } catch(e){
+                console.error("Erreur lors du chargement du contenu JSON", e);
+                notification("Erreur lors du chargement du contenu JSON");
+            }
+
         });
         reader.readAsText(files[0]);
+    } else {
+        throw new Error("Ce type de contenu n'est pas pris en charge par l'application.");
+        // notification("Ce type de contenu n'est pas pris en charge par l'application.");
+        // console.error("Ce type de contenu n'est pas pris en charge par l'application.");
     }
 }
 
 
-// /* --- drag&drop fichier json list clients --- */
-// let listeClients = document.querySelector("#liste-clients");
-// listeClients.addEventListener("dragover", event => {
-// //    console.dir(event.dataTransfer);
-//     let items = event.dataTransfer.items;
-//     if (items.length > 0 && items[0].type === "application/json" ) {
-//         event.preventDefault();
-//         listeClients.classList.add("dragfile");
-//     }
-// });
-// listeClients.addEventListener("dragleave", event => {
-//     listeClients.classList.remove("dragfile");
-// });
 
-// listeClients.addEventListener("drop", event => {
-//     event.preventDefault();
 
-//     listeClients.classList.remove("dragfile");
-//     console.dir("ficher json reçu !");
-
-//     let file = event.dataTransfer.items[0].getAsFile();
-//     let reader = new FileReader();
-//     reader.addEventListener("load", async (fr, event) => {
-//         let attentes = [];
-//         let clients = JSON.parse(reader.result);
-//         clients.forEach(client => {
-//             attentes.push(dao.create(client.nom,client.prenom));
-//         });
-//         await Promise.all(attentes);
-//         actualiserListeClients();
-//     });
-//     reader.readAsText(file);
-// });
 
 
 /* ---- Authentification ---- */
