@@ -8,7 +8,7 @@ let dao = clientDAO;
 /* --- Construction du tableau des clients --- */
 function actualiserListeClients(){
     let clients = dao.readAll();
-        
+
     let tabClients = document.querySelector("#liste-clients table > tbody");
     tabClients.innerHTML = "";
     console.dir(clients);

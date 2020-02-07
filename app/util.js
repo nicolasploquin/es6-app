@@ -19,5 +19,4 @@ export function notification(message){
     
     setTimeout(() => elemP.remove(), 5000);
     
-    
 }
