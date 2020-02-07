@@ -10,7 +10,8 @@ let dao = clientDAO;
 let dataVue = {
     titreCmp: "Liste des clients",
     clients: [],
-    selectedClient: null
+    selectedClient: null,
+    recherche: ""
 };
 
 
@@ -26,6 +27,14 @@ let clientsCmp = new Vue({
             // dataVue.selectedClient = new Client(ligne.cells[0].textContent, ligne.cells[1].textContent);
         })
     } ,
+    computed: {
+        effectif: () => dataVue.clients.length,
+        rechClients: () => dataVue.clients.filter( 
+            (cli) => dataVue.recherche.length === 0 
+                || cli.nom.toLowerCase().indexOf(dataVue.recherche.toLowerCase()) !== -1
+                || cli.prenom.toLowerCase().indexOf(dataVue.recherche.toLowerCase()) !== -1
+        )
+    },
     mounted: function(){
         actualiserClients();
     },
