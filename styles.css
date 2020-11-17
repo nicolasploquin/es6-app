@@ -164,11 +164,12 @@ body > header {
 
 body > header > h1 {
     font-size: var(--titre-font-size);
-    padding: 0 1em;
-    flex: 0 0 auto;
+    padding: .25em 1em;
+    flex: 1 0 auto;
+    text-align: left;
 }
 body > header > nav {
-    flex: 1 1 auto; /* grow (agrandissement), shrink (réduction), basis (longueur référence) */
+    flex: 100 1 auto; /* grow (agrandissement), shrink (réduction), basis (longueur référence) */
     
     display: flex; /* pour positionner le contenu du nav (les liens a) */
     justify-content: center;
@@ -193,11 +194,23 @@ body > header > button {
     border-radius: 1em;
 }
 
+@media screen and (max-width: 1200px) {
+    body > header > nav {
+        order: 3;
+        flex: 1 1 100%;
+    }
+}
+
+
+
+
 body > footer {
     font-size: .8em;
     text-align: center;
     background-color: rgba(255,255,255,.8);
 }
+
+
 
 
 /* --- Menu (body > nav) --- */
@@ -372,7 +385,7 @@ main > * {
 }
 /*.eni-form input, .eni-form textarea, .eni-form select {*/
 .eni-form > label + * {
-        padding: .25em 1em;
+    padding: .25em 1em;
     margin-bottom: .5em;
     border: 0 none;
     border-left: 5px solid #999;
@@ -392,7 +405,7 @@ main > * {
     border-right-color: #f00;
 }
 
-.eni-form :focus {
+.eni-form :not(button):focus {
     outline: none;
     box-shadow: none;
     border-left-color: #006;
@@ -401,9 +414,6 @@ main > * {
     opacity: 0.3;
 }
 
-/* form:invalid button[type=submit] {
-    display: none;
-} */
 
 
 /* --- formulaire inline-block (class="eni-form inline") */
@@ -423,10 +433,7 @@ main > * {
     grid-template-columns: 8em minmax(auto, 16em); 
 }
 .eni-form.grid .form-control {
-    grid-column: 2; 
-}
-.eni-form.grid .form-control {
-    grid-column: 2; 
+    grid-column-end: -1;
 }
 
 /* --- largeur inférieure ou égale à 810px --- */
@@ -508,3 +515,31 @@ main > * {
     }
 
 }
+
+/* --- popup formulaire authentification --- */
+
+#form-auth.show {
+    display: block;
+}
+#form-auth {
+    display: none;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #fffc;
+}
+
+#form-auth form {
+    max-width: 300px;
+    margin: calc(50vh - 4em) auto 0;
+}
+
+#form-auth form > * {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+
