@@ -127,7 +127,7 @@ img, video, audio, canvas, svg, figure {
     grid-column: 2;
     grid-row: 1;
 }
-.pos-grids body > main {
+.pos-grid body > main {
     grid-column: 2;
     grid-row: 2;
     
@@ -341,16 +341,25 @@ body.menu-closed > nav button {
 
 
 /* --- formulaire (class="eni-form") */
+.eni-form {
+    display: grid;
+    grid-template-columns: minmax(min-content,max-content) minmax(auto, 16em); 
+    grid-auto-rows: auto;
+    gap: var(--padding-standard);
+}
+.eni-form .form-control {
+    grid-column-end: -1;
+}
 
 .eni-form label {
-    padding: .25em 1em;
-    margin-bottom: .5em;
+    -padding: .25em 1em;
+    -margin-bottom: .5em;
     text-align: right;
 }
 /*.eni-form input, .eni-form textarea, .eni-form select {*/
 .eni-form > label + * {
     padding: .25em 1em;
-    margin-bottom: .5em;
+    -margin-bottom: .5em;
     border: 0 none;
     border-left: 5px solid #999;
     border-right: 5px solid #999;
@@ -378,29 +387,6 @@ body.menu-closed > nav button {
 .eni-form button:disabled {
     opacity: 0.3;
 }
-
-/* --- formulaire inline-block (class="eni-form inline") */
-.eni-form.inline label {
-    display: inline-block;
-    width: 6em;
-}
-.eni-form.inline label + * { /* input et select */
-    display: inline-block;
-    width: 12em;
-    box-sizing: border-box;
-}
-
-/* --- formulaire grid layout (class="eni-form grid") */
-.eni-form.grid {
-    display: grid;
-    grid-template-columns: minmax(min-content,max-content) minmax(auto, 16em); 
-    grid-auto-rows: auto;
-}
-.eni-form.grid .form-control {
-    grid-column-end: -1;
-}
-
-/* --- largeur inférieure ou égale à 810px --- */
 
 
 /* --- Carte Google maps --- */
