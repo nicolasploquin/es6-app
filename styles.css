@@ -141,8 +141,35 @@ img, video, audio, canvas, svg, figure {
 
 
 
+
+
+main > section {
+    display: none;
+}
+
+
+main > section:target {
+    display: unset;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* --- Navigation Onglets --- */
-main > * {
+/* main > * {
     display: none;
     opacity: 0;
     transition: opacity .2s;
@@ -150,7 +177,7 @@ main > * {
 main > :target {
     display: block;
     opacity: 1;
-}
+} */
 
 /* --- header (body > header) --- */
 body > header {
@@ -369,7 +396,7 @@ body.menu-closed > nav button {
     text-align: right;
 }
 /*.eni-form input, .eni-form textarea, .eni-form select {*/
-.eni-form > label + * {
+.eni-form > label + *:not(.form-control) {
     padding: .25em 1em;
     border: 0 none;
     border-bottom: 3px solid #ccc;
@@ -395,6 +422,15 @@ body.menu-closed > nav button {
 }
 .eni-form button:disabled {
     opacity: 0.5;
+}
+
+
+#auth-form.eni-form label:not([for]) {
+    grid-column: 1 / -1;
+    text-align: center;
+}
+#auth-form.eni-form label:not([for]) {
+    grid-column: 1 / -1;
 }
 
 
@@ -491,7 +527,7 @@ body.menu-closed > nav button {
 }
 
 #form-auth form {
-    max-width: 300px;
+    width: max-content;
     margin: calc(50vh - 4em) auto 0;
 }
 

@@ -79,7 +79,7 @@
         <section id="ajouter-client">
             <h2>Ajouter Client</h2>
             <p>Les champs marqués * sont obligatoires.</p>
-            <form id="form-client" class="eni-form grid"  
+            <form id="form-client" class="eni-form"  
             method="POST" action="http://wildfly.westeurope.cloudapp.azure.com/clients/post" enctype="application/x-www-form-urlencoded">
                 <label for="ac-nom">Nom*</label>
                 <input id="ac-nom" name="nom" required  />
@@ -172,13 +172,20 @@
         <p>&copy; ENI Service - mars 2022</p>
     </footer>
     <aside id="form-auth">
-        <form>
-            <h3>Authentification</h3>
-            <input name="username" required placeholder="Identifiant" />
-            <input type="password" name="password" required placeholder="Mot de passe" />
-            <label><input type="checkbox" name="storeAuth" /> Conserver l'authentification</label>
-            <button type="submit">OK</button>
-            <button type="reset">Annuler</button>
+        <h3>Authentification</h3>
+        <form id="auth-form" class="eni-form">
+            <label for="identifiant">Identifiant</label>
+            <input id="identifiant" name="username" required placeholder="Identifiant" />
+            <label for="motdepasse">Mot de passe</label>
+            <input id="motdepasse" type="password" name="password" required placeholder="Mot de passe" />
+            <label>
+                Conserver l'authentification
+                <input type="checkbox" name="storeAuth" />
+            </label>
+            <div class="form-control">
+                <button type="submit" class="primary">Connexion</button>
+                <button type="reset">Annuler</button>
+            </div>
         </form>
     </aside>
 </body>
