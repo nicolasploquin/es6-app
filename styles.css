@@ -183,6 +183,10 @@ body > header nav a:focus {
     border-bottom-color: var(--couleur-theme);
 }
 
+body > header button {
+    margin: 0 8px;
+}
+
 @media screen and (max-width: 1200px) {
     body > header > nav {
         order: 3;
@@ -209,7 +213,6 @@ button {
     cursor: pointer;
     
     padding: var(--padding-standard);
-    margin: 0 8px;
     font-size: .9em;
     text-transform: uppercase;
     font-weight: 600;
@@ -349,21 +352,27 @@ body.menu-closed > nav button {
 }
 .eni-form .form-control {
     grid-column-end: -1;
+    display: flex;
+    gap: var(--padding-standard);
+}
+.eni-form .form-control {
+    grid-column-end: -1;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: end;
+    align-items: center;
+    gap: var(--padding-standard);
 }
 
 .eni-form label {
-    -padding: .25em 1em;
-    -margin-bottom: .5em;
+    padding: .25em 0;
     text-align: right;
 }
 /*.eni-form input, .eni-form textarea, .eni-form select {*/
 .eni-form > label + * {
     padding: .25em 1em;
-    -margin-bottom: .5em;
     border: 0 none;
-    border-left: 5px solid #999;
-    border-right: 5px solid #999;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 3px solid #ccc;
 }
 
 .eni-form [required]:valid,
@@ -371,21 +380,21 @@ body.menu-closed > nav button {
 .eni-form [type=date]:valid,
 .eni-form [type=email]:valid,
 .eni-form [type=number]:valid {
-    border-right-color: #090;
+    -border-bottom-color: #6f9;
 }
 .eni-form :invalid {
     outline: none;
     box-shadow: none;
-    border-right-color: #f00;
+    border-bottom-color: #f33;
 }
 
 .eni-form :not(button):focus {
     outline: none;
     box-shadow: none;
-    border-left-color: #006;
+    border-bottom-color: var(--couleur-theme);
 }
 .eni-form button:disabled {
-    opacity: 0.3;
+    opacity: 0.5;
 }
 
 
