@@ -380,18 +380,18 @@ body.menu-closed > nav button {
 .eni-form [type=date]:valid,
 .eni-form [type=email]:valid,
 .eni-form [type=number]:valid {
-    -border-bottom-color: #6f9;
-}
-.eni-form :invalid {
-    outline: none;
-    box-shadow: none;
-    border-bottom-color: #f33;
+    border-bottom-color: #0c3;
 }
 
-.eni-form :not(button):focus {
+.eni-form [name]:focus {
     outline: none;
     box-shadow: none;
     border-bottom-color: var(--couleur-theme);
+}
+.eni-form [name]:invalid {
+    outline: none;
+    box-shadow: none;
+    border-bottom-color: #f33;
 }
 .eni-form button:disabled {
     opacity: 0.5;

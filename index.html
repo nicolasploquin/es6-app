@@ -89,7 +89,7 @@
                 <textarea id="ac-adresse" name="adresse" rows="3" maxlength="140">10 rue des Sports</textarea>
                 <label for="ac-date-naiss">Date Naissance</label>
                 <input id="ac-date-naiss" name="dateNaiss" type="date"
-                    min="1960-01-01" max="1980-12-31"
+                    min="1980-01-01" max="1980-12-31"
                  />
                 <label for="ac-email">E-mail</label>
                 <input id="ac-email" name="email" type="email" />
@@ -98,7 +98,10 @@
                 <label for="ac-tel">Téléphone</label>
                 <input id="ac-tel" name="tel" type="tel"
                     placeholder="00.00.00.00.00"
-                    pattern="(\+33|0)[1-9]([\.\s]?[0-9]{2}){4}" />
+                    title="00.00.00.00.00"
+                    pattern="[0-9]{2}([\.\s]?[0-9]{2}){4}"
+                    -pattern="(\+33|0)[1-9]([\.\s]?[0-9]{2}){4}" 
+                    />
                 <div class="form-control">
                     <button type="reset">Effacer</button>
                     <button type="submit" class="primary">Enregistrer</button>
