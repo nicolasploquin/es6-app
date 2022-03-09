@@ -267,8 +267,10 @@ body > nav h3 {
     text-align: center;
 }
 body > nav a {
-    display: block;
     padding: .5em 1em;
+    display: flex;
+    align-items: center;
+    column-gap: 1em;
 }
 body > nav a:hover,
 body > nav a:focus {
