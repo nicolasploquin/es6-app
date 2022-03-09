@@ -5,6 +5,7 @@ html {
     --largeur-colonne: 12em; /* définition d'une dimension standard */
     --couleur-theme: #06c;
     --titre-font-size: 1.25rem;
+    --padding-standard: .5em 1em;
 
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,7 +20,7 @@ html {
 
 h1,h2,h3{
     margin: 0;
-    padding: .5em 1em; /* remplacer les marges par du padding */
+    padding: var(--padding-standard); /* remplacer les marges par du padding */
     font-size: 1.25em;
     font-weight: 100;
     font-variant: small-caps;
@@ -104,6 +105,8 @@ img, video, audio, canvas, svg, figure {
     width: calc(100vw - var(--largeur-colonne));
     background-color: rgba(255,255,255,.8);
 }
+
+
 /* --- Positionnement grid --- */
 /* body, header, nav, footer, main, section {
     outline: 1px dashed navy;
@@ -112,8 +115,9 @@ img, video, audio, canvas, svg, figure {
 .pos-grid body {
     margin: 0; /* supprimer la marge de 8px par défaut. */
     display: grid;
-    grid-template-columns: var(--largeur-colonne) 1fr;
-    grid-template-rows: auto 1fr auto ;
+    /* grid-template-columns: var(--largeur-colonne) 1fr; */
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: auto 1fr auto;
     height: 100vh;
 }
 
@@ -133,8 +137,7 @@ img, video, audio, canvas, svg, figure {
 }
 .pos-grid body > footer {
     grid-column: 2;
-    grid-row: -2;
-
+    grid-row-end: -1;
 }
 
 
@@ -152,8 +155,6 @@ main > :target {
 }
 
 /* --- header (body > header) --- */
-body > header > * { -order: 1px dashed #333; }
-
 body > header {
     box-shadow: 0 0 4px #666;
     min-height: 3rem;
