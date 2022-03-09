@@ -13,13 +13,17 @@
     <link rel="stylesheet" href="print.css" media="print" />
     <script type="module" src="app/app-async.js" defer ></script>
 </head>
-<body class="menu-closed">
+<body class=""><!-- menu-closed -->
     <nav>
         <button id="btn-menu-close"><i class="fas fa-angle-double-left"></i></button>
         <h3>Menu</h3>
-        <a href="#fable"><i class="material-icons">face</i> <span>Cigale et Fourmi</span></a>
-        <a href="#fable"><i class="fas fa-image"></i> <span>Illustration</span></a>
-        <a href="#fable"><i class="fas fa-download"></i> <span>Téléchargement</span></a>
+        <a href="#accueil"><span class="material-icons">home</span><span>Accueil</span></a>
+        <a href="#liste-clients"><span class="material-icons">list</span><span>Clients</span></a>
+        <a href="#ajouter-client"><span class="material-icons">edit</span><span>Nouveau</span></a>
+        <a href="#detail-compte"><span class="material-icons">grid</span><span>Détails</span></a>
+        <a href="#form-operation"><span class="material-icons">settings</span><span>Paramètre</span></a>
+        <a href="index-vue.html">VueJS</a>
+
         <a href="#fable"><i class="fas fa-link"></i> <span>Lien</span></a>
         <a href="#fable"><i class="fas fa-video"></i> <span>Média</span></a>
         <a href="#fable"><i class="fas fa-table"></i> <span>Population</span></a>		
@@ -30,56 +34,11 @@
     <header>
         <h1 title="Formation&#xA;HTML5 &amp; CSS3">Ma Banque EcmaScript 6</h1>
         <nav>
-            <a href="#accueil">Accueil</a>
-            <a href="#liste-clients">Clients</a>
-            <a href="#ajouter-client">Nouveau</a>
-            <a href="#detail-compte">Détails</a>
-            <a href="#form-operation">Opération</a>
-            <a href="index-vue.html">VueJS</a>
+            
         </nav>
         <button id="btnAuth" class="primary">Connexion</button>
     </header>
     <main>
-        <section id="fable" class="fable">
-            <h2 id="fable">La Cigale et la Fourmi</h2>
-            <blockquote>
-                La Cigale, ayant chanté tout l'été, se trouva fort dépourvue quand la bise fut venue: pas un seul petit morceau
-                de mouche ou de vermisseau. Elle <img src="img/cigale-fourmi.jpg" width="120" alt="Illustration de la fable La Cigale et la Fourmi" />alla crier famine chez la Fourmi sa voisine, la priant de lui prêter quelque grain pour subsister
-                jusqu'à la saison nouvelle. <q>Je vous paierai, lui dit-elle, avant l'Oût, foi d'animal, intérêt et principal.</q>
-                La Fourmi n'est pas prêteuse&nbsp;: C'est là son moindre défaut. Que faisiez-vous au temps chaud&nbsp;? Dit-elle à cette emprunteuse.
-                <br/>-&nbsp;Nuit et jour à tout venant, je chantais, ne vous déplaise.
-                <br/>-&nbsp;Vous chantiez&nbsp;? j'en suis fort aise. Et bien, dansez maintenant.
-            </blockquote>
-            <p>
-                <cite>Jean de La Fontaine, Fables de La Fontaine, 1668.</cite> <ins>2,50 &euro;</ins> (<strong>-50%</strong>, <del>5,00 €</del>)
-            </p>
-
-        
-            <h2 id="illustration">Illustration</h2>
-            <figure>
-                <img src="img/cigale-fourmi.jpg" width="300" alt="Illustration de la fable La Cigale et la Fourmi" />
-                <figcaption>Illustration de la fable La Cigale et la Fourmi</figcaption>
-            </figure>
-        
-            <h2 id="telechargement">Téléchargement</h2>
-            <ul>
-                <li><a href="doc/fable.pdf" download>Format PDF</a></li>
-                <li><a href="doc/fable.docx" download>Format Word</a></li>
-                <li><a href="doc/fable.pdf" download>Format PDF</a></li>
-                <li><a href="doc/fable.docx" download>Format Word</a></li>
-                <li><a href="doc/fable.pdf" download>Format PDF</a></li>
-                <li><a href="doc/fable.docx" download>Format Word</a></li>
-            </ul>
-            
-            <h2 id="lien">Lien</h2>
-            <a href="http://fr.wikipedia.org/wiki/La_Cigale_et_la_Fourmi" target="_blank" >Wikipedia</a>
-
-            <h2 id="images-rwd">Images Responsives</h2>
-            <img srcset="img/eni-1x.png,
-                            img/eni-1.5x.png 1.5x,
-                            img/eni-2x.png 2x"
-                src="eni-1x.png" alt="Logo ENI" />
-        </section>
         <section id="accueil" class="eni-article">
             <h2>Définition</h2>
             <p>
