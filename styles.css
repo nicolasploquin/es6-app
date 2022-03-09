@@ -72,37 +72,6 @@ img, video, audio, canvas, svg, figure {
     outline: 1px dashed navy;
 } */
 
-.pos-abs body {
-    margin: 0; /* supprimer la marge de 8px par défaut. */
-    position: relative;
-    padding-left: var(--largeur-colonne);
-    height: 100vh;
-}
-
-.pos-abs body > nav {
-    position: absolute;
-    width: var(--largeur-colonne);
-    height: 100vh;
-    left: 0;
-    
-}
-.pos-abs body > header > * {
-    display: inline-block;
-    vertical-align: middle;
-}
-.pos-abs body > main {
-    /* hauteur de fenêtre - hauteur header - hauteur footer */
-    max-height: calc(100vh - (3 * var(--titre-font-size)) - 3.375rem); 
-    overflow: auto;
-    padding: 16px;
-    box-sizing: border-box;
-}
-.pos-abs body > footer {
-    position: fixed;
-    bottom: 0;
-    width: calc(100vw - var(--largeur-colonne));
-    background-color: rgba(255,255,255,.8);
-}
 
 
 /* --- Positionnement grid --- */
@@ -112,11 +81,13 @@ img, video, audio, canvas, svg, figure {
 
 .pos-grid body {
     margin: 0; /* supprimer la marge de 8px par défaut. */
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
     display: grid;
     /* grid-template-columns: var(--largeur-colonne) 1fr; */
     grid-template-columns: max-content 1fr;
     grid-template-rows: auto 1fr auto;
-    height: 100vh;
 }
 
 .pos-grid body > nav {
@@ -132,6 +103,7 @@ img, video, audio, canvas, svg, figure {
     grid-row: 2;
     
     padding: 1em;
+
 }
 .pos-grid body > footer {
     grid-column: 2;
@@ -181,10 +153,12 @@ main > :target {
 
 /* --- header (body > header) --- */
 body > header {
-    box-shadow: 0 0 4px #666;
-    min-height: 3rem;
+    border-bottom: 1px solid var(--couleur-theme);
+    padding: var(--padding-standard);
     display: flex;
-    flex-flow: row wrap;
+    row-gap: .5rem;
+    flex-flow: row wrap-reverse;
+    justify-content: end;
     align-items: center;
 }
 
@@ -194,33 +168,11 @@ body > header > h1 {
     flex: 1 0 auto;
     text-align: left;
 }
-body > header > nav {
-    flex: 100 1 auto; /* grow (agrandissement), shrink (réduction), basis (longueur référence) */
-    
-    display: flex; /* pour positionner le contenu du nav (les liens a) */
-    justify-content: center;
-}
-body > header nav a {
-    display: inline-block;
-    border-bottom: 1px solid transparent;
-    padding: .25em 1em;
-}
-body > header nav a:hover,
-body > header nav a:focus {
-    border-bottom-color: var(--couleur-theme);
-}
+
 
 body > header button {
     margin: 0 8px;
 }
-
-@media screen and (max-width: 1200px) {
-    body > header > nav {
-        order: 3;
-        flex: 1 1 100%;
-    }
-}
-
 
 
 
@@ -306,6 +258,18 @@ body.menu-closed > nav a span {
 
 body.menu-closed > nav button {
     transform: rotate(180deg);
+}
+
+/* ---- Responsive - icons only - width < 580px ---- */
+@media screen and (max-width: 620px) {
+
+    body > nav a span:last-child {
+        display: none;
+    }
+    body > nav a span:last-child {
+        display: none;
+    }
+    
 }
 
 
@@ -459,7 +423,7 @@ body.menu-closed > nav button {
 /* ------------------------------------ Vue adaptative ------------------------------------------------- */
 
 /* --- largeur inférieure ou égale à 810px --- */
-@media screen and (max-width: 850px) {
+media screen and (max-width: 850px) {
     
     html {
         --largeur-colonne: 48px; 
@@ -479,7 +443,7 @@ body.menu-closed > nav button {
     }
 }
 
-@media screen and (max-width: 660px) {
+media screen and (max-width: 660px) {
 
     body > header h1 {
         flex: 1 1 100%;
@@ -496,7 +460,7 @@ body.menu-closed > nav button {
 
 }
 
-@media screen and (max-width: 530px) {
+media screen and (max-width: 530px) {
 
     .eni-form label {
         margin-bottom: 0;
