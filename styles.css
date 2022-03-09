@@ -444,7 +444,8 @@ main > * {
 /* --- formulaire grid layout (class="eni-form grid") */
 .eni-form.grid {
     display: grid;
-    grid-template-columns: 8em minmax(auto, 16em); 
+    grid-template-columns: minmax(min-content,max-content) minmax(auto, 16em); 
+    grid-auto-rows: auto;
 }
 .eni-form.grid .form-control {
     grid-column-end: -1;
