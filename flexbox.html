@@ -20,10 +20,10 @@
      /* max-height: 50vh;  */
 
      display: flex;
-     flex-flow: row wrap;
+     flex-flow: row wrap-reverse;
 
-     justify-content: space-around;
-     align-items: stretch;
+     justify-content: space-between;
+     align-items: center;
 
     }
     div {
@@ -33,7 +33,7 @@
       background-color: rgba(255, 255, 0, 0.5);
       -idth: 150px;
       
-      flex: 1 1 auto; /* réduction, agradissement, dimension initiale */
+      flex: 1 1 5rem; /* agradissement, réduction, dimension initiale */
     
       
     }
@@ -41,11 +41,14 @@
     	font-size: 3em;
 		  background-color: rgba(255, 0, 0, 0.25);
 
-      flex: 1000 1 auto;
+      /* flex: 1000 1 auto; */
          
     }
     #deux {
-   
+      flex-grow: 1;
+    }
+    .spacer {
+
     }
     
     
@@ -57,12 +60,14 @@
 <body>
   <article>
     <div id="un">Un</div>
+    <span class="spacer"></span>
     <div id="deux">Deux</div>
     <div id="trois">Trois</div>
+    <span class="spacer"></span>
     <div id="quatre">Quatre</div>
     <div id="cinq">Cinq</div>
     <div id="six">Six</div>
-    <div id="sept">Sept</div>
+    <!-- <div id="sept">Sept</div> -->
   </article>
 </body>
 </html>
