@@ -277,37 +277,6 @@ body.menu-closed > nav button {
 }
 
 
-
-
-
-
-
-/* --- fable (.fable) --- */
-main > * {
-    padding: 1em;
-}
-/* --- fable (.fable) --- */
-.fable .lafontaine {
-    text-align: center;
-}
-
-.fable blockquote {
-    font-family: 'Indie Flower', cursive;
-    font-size: 1.2em;
-    line-height: 1.75em;
-    text-align: justify;
-    
-    background-color: #990000;
-    background-image: linear-gradient(to top, #660000, #993333);
-    color: white;
-    
-    padding: 1em 2em;
-    border-radius: 2em;
-}
-.fable blockquote img {
-    float: right;
-}
-
 .eni-article p {
     text-align: justify;
 }
@@ -319,24 +288,6 @@ main > * {
     float: right;
     margin: .5em 0 .5em 1em;
 }
-
-/* liste des liens */
-#telechargement + ul{
-    list-style-type: none;
-    list-style-position: outside;
-    -ist-style-image: url(img/cigale-fourmi.jpg);
-    -adding: 0;
-}
-#telechargement + ul li::before {
-    content: "\20\25CA\20";
-    display: inline-block;
-    width: 1.375em;
-    text-align: center;
-    background-color: white;
-    border-radius: 50%;
-    margin-right: .5em;
-}
-
 
 /* --- tableau (class="eni-table") --- */
 
@@ -427,8 +378,6 @@ main > * {
 .eni-form button:disabled {
     opacity: 0.3;
 }
-
-
 
 /* --- formulaire inline-block (class="eni-form inline") */
 .eni-form.inline label {
