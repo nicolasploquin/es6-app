@@ -15,6 +15,7 @@
 
     }
     article {
+      
       box-sizing: border-box;
       padding: 10px;
       border: 2px solid red;
@@ -23,13 +24,16 @@
       -max-width: 800px;
       margin: auto;
 
+      margin-top: calc((100vh - 428px) / 2);
+
      display: grid;
      
       grid-template-columns: 150px 1fr 2fr;
       grid-template-rows: repeat(4, minmax(100px, auto));
-
+      
     }
     div {
+      box-sizing: border-box;
       margin: 0px;
       padding: 5px;
       border: 2px solid black;
@@ -43,7 +47,18 @@
 		  background-color: rgba(255, 0, 0, 0.25);
 
     }
-    #deux {
+    deux {
+      position: absolute;
+      width: 100vw; /* vw view width 100% de la hauteur de la fenêtre */
+      height: 100vh; /* vh view height 30% de la hauteur de la fenêtre */
+
+      font-size: 100vmin;
+
+      right: 0;
+      bottom: 0;
+
+
+
    
     }
     #cinq {

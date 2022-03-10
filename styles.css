@@ -5,7 +5,9 @@ html {
     --largeur-colonne: 12em; /* définition d'une dimension standard */
     --couleur-theme: #06c;
     --titre-font-size: 1.25rem;
-    --padding-standard: .5em 1em;
+    --padding-base: 1em;
+    --padding-small: calc(var(--padding-base) / 4) calc(var(--padding-base) / 2);
+    --padding-standard: calc(var(--padding-base) / 2) var(--padding-base);
 
 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,7 +20,7 @@ html {
 
 h1,h2,h3{
     margin: 0;
-    padding: var(--padding-standard); /* remplacer les marges par du padding */
+    padding: var(--padding-small); /* remplacer les marges par du padding */
     font-size: 1.25em;
     font-weight: 100;
     font-variant: small-caps;
@@ -266,9 +268,7 @@ body.menu-closed > nav button {
     body > nav a span:last-child {
         display: none;
     }
-    body > nav a span:last-child {
-        display: none;
-    }
+
     
 }
 
