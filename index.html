@@ -10,11 +10,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="print.css" media="print" />
-    <script type="module" src="app/app-async.js" defer ></script>
+    <!-- <script type="module" src="app/app-async.js" defer ></script> -->
+    <script src="app.js" type="module"></script>
 </head>
 <body class=""><!-- menu-closed -->
     <nav>
-        <button id="btn-menu-close"><i class="fas fa-angle-double-left"></i></button>
+        <button id="btn-menu-close">
+            <span class="material-icons">menu</span>
+            <span class="material-icons">clear</span></button>
         <a href="#accueil"><span class="material-icons">home</span><span>Accueil</span></a>
         <a href="#liste-clients"><span class="material-icons">list</span><span>Clients</span></a>
         <a href="#ajouter-client"><span class="material-icons">edit</span><span>Nouveau</span></a>
@@ -25,9 +28,6 @@
     </nav>
     <header>
         <h1>Ma Banque EcmaScript 6</h1>
-        <nav>
-            
-        </nav>
         <button id="btnAuth" class="primary">Connexion</button>
     </header>
     <main>

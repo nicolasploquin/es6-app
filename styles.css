@@ -169,7 +169,15 @@ body > header > h1 {
     padding: .25em 1em;
     flex: 1 0 auto;
     text-align: left;
+
+    cursor: pointer;
 }
+
+body > header.nouveau > h1 {
+    font-weight: 900;
+    color: orangered;
+}
+
 
 
 body > header button {
