@@ -69,19 +69,12 @@ img, video, audio, canvas, svg, figure {
     -ransition: all .4s;
 }
 
-/* --- Positionnement absolu --- */
-/* body, header, nav, footer, main, section {
-    outline: 1px dashed navy;
-} */
-
-
-
 /* --- Positionnement grid --- */
 /* body, header, nav, footer, main, section {
     outline: 1px dashed navy;
 } */
 
-.pos-grid body {
+body {
     margin: 0; /* supprimer la marge de 8px par défaut. */
     width: 100vw;
     height: 100vh;
@@ -92,66 +85,36 @@ img, video, audio, canvas, svg, figure {
     grid-template-rows: auto 1fr auto;
 }
 
-.pos-grid body > nav {
+body > nav {
     grid-column: 1;
     grid-row: 1 / -1;
 }
-.pos-grid body > header {
+body > header {
     grid-column: 2;
     grid-row: 1;
 }
-.pos-grid body > main {
+body > main {
     grid-column: 2;
     grid-row: 2;
     
     padding: 1em;
 
 }
-.pos-grid body > footer {
+body > footer {
     grid-column: 2;
     grid-row-end: -1;
 }
 
-
-
-
-
-
-main > section {
-    display: none;
-}
-
-
-main > section:target {
-    display: unset;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* --- Navigation Onglets --- */
-/* main > * {
+main > * {
     display: none;
     opacity: 0;
     transition: opacity .2s;
 }
 main > :target {
-    display: block;
+    display: unset;
     opacity: 1;
-} */
+}
 
 /* --- header (body > header) --- */
 body > header {
