@@ -24,7 +24,7 @@ h1,h2,h3{
     font-size: 1.25em;
     font-weight: 100;
     font-variant: small-caps;
-    color:var(--couleur-theme); 
+    color: #039; 
     letter-spacing: .15em;
 }
 
@@ -121,6 +121,7 @@ main > :target {
 
 /* --- header (body > header) --- */
 body > header {
+    -background-color: #0393;
     border-bottom: 1px solid var(--couleur-theme);
     padding: var(--padding-standard);
     display: flex;
@@ -186,7 +187,7 @@ button:active {
 
 /* --- Menu (body > nav) --- */
 body > nav.sidebar {
-    background-color: #444;
+    background-color: #039;
     color: #eee;
     position: relative;
 }
