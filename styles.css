@@ -182,7 +182,7 @@ button:active {
 }
 
 /* --- Menu (body > nav) --- */
-body > nav {
+body > nav.sidebar {
     background-color: #444;
     color: #eee;
     position: relative;
@@ -201,6 +201,11 @@ body > nav a:hover,
 body > nav a:focus {
     background-color: #eee;
     color: #444;
+}
+
+/* fermeture du menu */
+body > nav.small a span:last-child {
+    display: none;
 }
 
 /* --- réduction menu gauche */
