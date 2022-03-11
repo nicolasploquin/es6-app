@@ -1,89 +1,37 @@
 <!DOCTYPE html>
-<html lang="fr" class="pos-grid">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Formation HTML5 - ENI Service</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower" > 
-    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="print.css" media="print" />
-    <script type="module" src="app/app-async.js" defer ></script>
+    <!-- <script type="module" src="app/app-async.js" defer ></script> -->
+    <script src="app.js" type="module"></script>
 </head>
-<body class="menu-closed">
-    <nav>
-        <button id="btn-menu-close"><i class="fas fa-angle-double-left"></i></button>
-        <h3>Menu</h3>
-        <a href="#fable"><i class="material-icons">face</i> <span>Cigale et Fourmi</span></a>
-        <a href="#fable"><i class="fas fa-image"></i> <span>Illustration</span></a>
-        <a href="#fable"><i class="fas fa-download"></i> <span>Téléchargement</span></a>
-        <a href="#fable"><i class="fas fa-link"></i> <span>Lien</span></a>
-        <a href="#fable"><i class="fas fa-video"></i> <span>Média</span></a>
-        <a href="#fable"><i class="fas fa-table"></i> <span>Population</span></a>		
-        <a href="#fable"><i class="fas fa-address-card"></i> <span>Inscription</span></a>		
-        <a href="#fable"><i class="fas fa-cube"></i> <span>Cube</span></a>
-        <a href="#carte-agence"><i class="fas fa-map"></i> <span>Carte</span></a>
+<body class=""><!-- menu-closed -->
+    <nav class="sidebar small">
+        <a href="#accueil"><span class="material-icons">home</span><span>Accueil</span></a>
+        <a href="#liste-clients"><span class="material-icons">list</span><span>Clients</span></a>
+        <a href="#ajouter-client"><span class="material-icons">edit</span><span>Nouveau</span></a>
+        <a href="#detail-compte"><span class="material-icons">view_list</span><span>Détails</span></a>
+        <a href="#form-operation"><span class="material-icons">settings</span><span>Paramètres</span></a>
+        <a href="index-vue.html"><span class="material-icons">code</span><span>VueJS</span></a>
+        <a href="#carte-agence"><span class="material-icons">map</span><span>Carte</span></a>
     </nav>
     <header>
-        <h1 title="Formation&#xA;HTML5 &amp; CSS3">Ma Banque EcmaScript 6</h1>
-        <nav>
-            <a href="#accueil">Accueil</a>
-            <a href="#liste-clients">Clients</a>
-            <a href="#ajouter-client">Nouveau</a>
-            <a href="#detail-compte">Détails</a>
-            <a href="#form-operation">Opération</a>
-            <a href="index-vue.html">VueJS</a>
-        </nav>
-        <button id="btnAuth">Connexion</button>
+        <button id="btn-menu-close">
+            <span class="material-icons">menu</span>
+        </button>
+        <h1>Banque EcmaScript 6</h1>
+        <button id="btnAuth" class="primary">Connexion</button>
     </header>
     <main>
-        <section id="fable" class="fable">
-            <h2 id="fable">La Cigale et la Fourmi</h2>
-            <blockquote>
-                La Cigale, ayant chanté tout l'été, se trouva fort dépourvue quand la bise fut venue: pas un seul petit morceau
-                de mouche ou de vermisseau. Elle <img src="img/cigale-fourmi.jpg" width="120" alt="Illustration de la fable La Cigale et la Fourmi" />alla crier famine chez la Fourmi sa voisine, la priant de lui prêter quelque grain pour subsister
-                jusqu'à la saison nouvelle. <q>Je vous paierai, lui dit-elle, avant l'Oût, foi d'animal, intérêt et principal.</q>
-                La Fourmi n'est pas prêteuse&nbsp;: C'est là son moindre défaut. Que faisiez-vous au temps chaud&nbsp;? Dit-elle à cette emprunteuse.
-                <br/>-&nbsp;Nuit et jour à tout venant, je chantais, ne vous déplaise.
-                <br/>-&nbsp;Vous chantiez&nbsp;? j'en suis fort aise. Et bien, dansez maintenant.
-            </blockquote>
-            <p>
-                <cite>Jean de La Fontaine, Fables de La Fontaine, 1668.</cite> <ins>2,50 &euro;</ins> (<strong>-50%</strong>, <del>5,00 €</del>)
-            </p>
-
-        
-            <h2 id="illustration">Illustration</h2>
-            <figure>
-                <img src="img/cigale-fourmi.jpg" width="300" alt="Illustration de la fable La Cigale et la Fourmi" />
-                <figcaption>Illustration de la fable La Cigale et la Fourmi</figcaption>
-            </figure>
-        
-            <h2 id="telechargement">Téléchargement</h2>
-            <ul>
-                <li><a href="doc/fable.pdf" download>Format PDF</a></li>
-                <li><a href="doc/fable.docx" download>Format Word</a></li>
-                <li><a href="doc/fable.pdf" download>Format PDF</a></li>
-                <li><a href="doc/fable.docx" download>Format Word</a></li>
-                <li><a href="doc/fable.pdf" download>Format PDF</a></li>
-                <li><a href="doc/fable.docx" download>Format Word</a></li>
-            </ul>
-            
-            <h2 id="lien">Lien</h2>
-            <a href="http://fr.wikipedia.org/wiki/La_Cigale_et_la_Fourmi" target="_blank" >Wikipedia</a>
-
-            <h2 id="images-rwd">Images Responsives</h2>
-            <img srcset="img/eni-1x.png,
-                            img/eni-1.5x.png 1.5x,
-                            img/eni-2x.png 2x"
-                src="eni-1x.png" alt="Logo ENI" />
-        </section>
         <section id="accueil" class="eni-article">
             <h2>Définition</h2>
             <p>
-                <img src="img/bank1.jpg" height="200" alt="Devanture d'une banque au pied d'un imeuble" />
+                <img src="img/bank1.jpg" width="200" alt="Devanture d'une banque au pied d'un immeuble" />
                 Le dictionnaire Larousse définit la banque comme un <q>Établissement financier qui, 
                 recevant des fonds du public, les emploie pour effectuer des opérations de crédit 
                 et des opérations financières</q><sup>[1]</sup>. Au sens du droit positif français, 
@@ -107,14 +55,13 @@
         <section id="liste-clients">
             <h2>Liste des Clients</h2>
             <button id="btnClients">Actualiser</button>
-            <table class="eni-table">
+            <table id="table-clients" class="eni-table">
                 <thead>
                     <tr><th>Nom</th><th>Prénom</th></tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>{{client.nom}}</td><td>{{client.prenom}}</td>
-                    </tr>
+                    <!-- liste des clients à construire -->
+                    <!-- <tr><td>Leblanc</td><td>Marc</td></tr> -->
                 </tbody>
             </table>
 
@@ -126,7 +73,7 @@
         <section id="ajouter-client">
             <h2>Ajouter Client</h2>
             <p>Les champs marqués * sont obligatoires.</p>
-            <form id="form-client" class="eni-form grid"  
+            <form id="form-client" class="eni-form"  
             method="POST" action="http://wildfly.westeurope.cloudapp.azure.com/clients/post" enctype="application/x-www-form-urlencoded">
                 <label for="ac-nom">Nom*</label>
                 <input id="ac-nom" name="nom" required  />
@@ -136,7 +83,7 @@
                 <textarea id="ac-adresse" name="adresse" rows="3" maxlength="140">10 rue des Sports</textarea>
                 <label for="ac-date-naiss">Date Naissance</label>
                 <input id="ac-date-naiss" name="dateNaiss" type="date"
-                    min="1960-01-01" max="1980-12-31"
+                    min="1980-01-01" max="1980-12-31"
                  />
                 <label for="ac-email">E-mail</label>
                 <input id="ac-email" name="email" type="email" />
@@ -145,10 +92,13 @@
                 <label for="ac-tel">Téléphone</label>
                 <input id="ac-tel" name="tel" type="tel"
                     placeholder="00.00.00.00.00"
-                    pattern="(\+33|0)[1-9]([\.\s]?[0-9]{2}){4}" />
+                    title="00.00.00.00.00"
+                    pattern="[0-9]{2}([\.\s]?[0-9]{2}){4}"
+                    -pattern="(\+33|0)[1-9]([\.\s]?[0-9]{2}){4}" 
+                    />
                 <div class="form-control">
-                    <button type="submit">Ajouter</button>
                     <button type="reset">Effacer</button>
+                    <button type="submit" class="primary">Enregistrer</button>
                 </div>
             </form>
         </section>
@@ -213,16 +163,23 @@
         </section>
     </main>
     <footer>
-        <p>&copy; ENI Service - février 2020</p>
+        <p>&copy; ENI Service - mars 2022</p>
     </footer>
     <aside id="form-auth">
-        <form>
-            <h3>Authentification</h3>
-            <input name="username" required placeholder="Identifiant" />
-            <input type="password" name="password" required placeholder="Mot de passe" />
-            <label><input type="checkbox" name="storeAuth" /> Conserver l'authentification</label>
-            <button type="submit">OK</button>
-            <button type="reset">Annuler</button>
+        <h3>Authentification</h3>
+        <form id="auth-form" class="eni-form">
+            <label for="identifiant">Identifiant</label>
+            <input id="identifiant" name="username" required placeholder="Identifiant" />
+            <label for="motdepasse">Mot de passe</label>
+            <input id="motdepasse" type="password" name="password" required placeholder="Mot de passe" />
+            <label>
+                Conserver l'authentification
+                <input type="checkbox" name="storeAuth" />
+            </label>
+            <div class="form-control">
+                <button type="submit" class="primary">Connexion</button>
+                <button type="reset">Annuler</button>
+            </div>
         </form>
     </aside>
 </body>
