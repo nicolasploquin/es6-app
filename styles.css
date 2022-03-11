@@ -78,7 +78,7 @@ body {
     margin: 0; /* supprimer la marge de 8px par défaut. */
     width: 100vw;
     height: 100vh;
-    overflow-y: hidden;
+    overflow: hidden;
     display: grid;
     /* grid-template-columns: var(--largeur-colonne) 1fr; */
     grid-template-columns: max-content 1fr;
@@ -98,6 +98,9 @@ body > main {
     grid-row: 2;
     
     padding: 1em;
+
+    overflow: auto;
+    max-width: 100%;
 
 }
 body > footer {

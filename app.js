@@ -1,3 +1,5 @@
+import {dataService} from './data-service.js';
+import {httpService} from './http-service.js';
 
 console.log('Mon premier script JavaScript !');
 
@@ -77,6 +79,8 @@ const formClient = document.querySelector('#form-client');
 
 /** @type HTMLInputElement */
 const inputNom = formClient.querySelector('[name="nom"]');
+/** @type HTMLInputElement */
+const inputPrenom = formClient.querySelector('[name="prenom"]');
 /** 
  * Champ email
  * @type HTMLInputElement 
@@ -85,29 +89,10 @@ const inputEmail = formClient.querySelector('[name="email"]');
 /** @type HTMLInputElement */
 const inputEmailVerif = formClient.querySelector('[name="email-verif"]');
 
-// 1 -
+// Mise en majuscule de la valeur saisie dans le champ nom
 inputNom.addEventListener('input', (event) => {
     inputNom.value = inputNom.value.toUpperCase();
 });
-
-// // 2 -
-// inputNom.addEventListener('input', function (){
-//     inputNom.value = inputNom.value.toUpperCase();
-// });
-
-// // 3 -
-// inputNom.addEventListener('input',transformeNom );
-// function transformeNom(){
-//     inputNom.value = inputNom.value.toUpperCase();
-// }
-
-
-// inputNom.setCustomValidity('Il y a une erreur dans cette valeur !');
-// inputNom.setCustomValidity('');
-
-// formClient.checkValidity();
-// formClient.reportValidity();
-
 
 inputEmail.addEventListener('input', checkEmail);
 inputEmailVerif.addEventListener('input', checkEmail);
@@ -126,3 +111,119 @@ function checkEmail(event) {
         inputEmailVerif.setCustomValidity('');
     }
 }
+
+/* supprimer les espaces autour des textes saisis dans les champs */
+formClient.addEventListener('change', event => {
+    const champModifie = event.target;
+    champModifie.value = champModifie.value.trim();
+});
+
+// const listeChamps = formClient.querySelectorAll('[name]');
+
+// for(const champ of listeChamps){
+//     console.log(champ.name);
+//     champ.addEventListener('change', event => {
+//         event.target.value = event.target.value.trim();
+//     });
+// }
+
+// enregistrement des données saisies
+
+formClient.addEventListener('submit', event => {
+
+    event.preventDefault();
+    
+    const client = {
+        nom: inputNom.value.trim(),
+        prenom: inputPrenom.value.trim()
+    };
+
+    httpService.create(client).then( actualiserListeClients );
+
+    // actualiserListeClients();
+
+    location.href = '#liste-clients';
+
+    formClient.reset();
+
+});
+
+
+
+/* --------- Data Service ------------------------ */
+
+const clients = dataService.readAll();
+
+console.dir(clients);
+
+// dataService.create({
+//     nom: 'Leblanc',
+//     prenom: 'Marc'
+// });
+
+console.dir(clients);
+
+
+/* --------- Liste des clients ------------------------------------------ */
+
+/** @type HTMLTableSectionElement */
+const tableClients = document.querySelector('#table-clients tbody');
+
+tableClients.innerHTML = '<tr><td>Leblanc</td><td>Marc</td></tr>';
+
+async function actualiserListeClients(){
+    tableClients.innerHTML = '<tr><td colspan="*">chargement en cours...</td></tr>';
+
+    // const clients = httpService.readAll();
+
+    const clients = await httpService.readAll();
+
+    tableClients.innerHTML = '';
+    
+    clients.forEach( client => {
+        const tr = document.createElement('tr');
+        const tdNom = document.createElement('td');
+        const tdPrenom = document.createElement('td');
+        
+        tdNom.textContent = client.nom;
+        tdPrenom.textContent = client.prenom;
+        
+        tr.append(tdNom, tdPrenom);
+        tableClients.append(tr);
+    });
+        
+}
+// function actualiserListeClients(){
+//     tableClients.innerHTML = '<tr><td colspan="*">chargement en cours...</td></tr>';
+
+//     // const clients = httpService.readAll();
+
+//     const attente = httpService.readAll();
+
+//     attente.then( clients => {
+//         tableClients.innerHTML = '';
+
+//         clients.forEach( client => {
+//             const tr = document.createElement('tr');
+//             const tdNom = document.createElement('td');
+//             const tdPrenom = document.createElement('td');
+            
+//             tdNom.textContent = client.nom;
+//             tdPrenom.textContent = client.prenom;
+            
+//             tr.append(tdNom, tdPrenom);
+//             tableClients.append(tr);
+//         });
+//     });
+        
+// }
+
+document.querySelector('#btnClients')
+    .addEventListener('click', actualiserListeClients);
+
+// actualiserListeClients();
+
+
+
+
+
